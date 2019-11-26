@@ -5,6 +5,8 @@ import './App.css';
 import Table from './components/table';
 import Entry from './components/time-entry';
 import Landing from './components/landing';
+import Project from './components/project';
+import Client from './components/client';
 
 
 class App extends Component {
@@ -22,6 +24,8 @@ class App extends Component {
                 <Route exact path="/" component={Landing} />
                 <Route exact path="/Entry" component={Entry} />
                 <Route exact path="/Table" component={Table} />
+                <Route exact path="/Project" component={Project} />
+                <Route exact path="/Client" component={Client} />
               </Switch>
             </div>
           </div>

@@ -26,8 +26,13 @@ class Entry extends Component {
                     <label className="form-check-label" for="exampleRadios1">
                         Billed?</label>
                 </div>
+                <button className="btn entryCancel">
+                    Cancel{" "}
+                </button>
+                <button className="btn entrySubmit">
+                    Submit{" "}
+                </button>
             </form>
-
         );
     }
 }

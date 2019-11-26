@@ -42,6 +42,19 @@ class Table extends Component {
                         </tr>
                     </tbody>
                 </table>
+                <button className="btn showDay">
+                    Today{" "}
+                </button>
+                <button className="btn showWeek">
+                    Week{" "}
+                </button>
+                <button className="btn showMonth">
+                    Month{" "}
+                </button>
+                <button className="btn showCustom">
+                    Custom{" "}
+                </button>
+
             </div>
         );
     }
