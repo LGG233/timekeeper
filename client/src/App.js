@@ -7,6 +7,7 @@ import Entry from './components/time-entry';
 import Landing from './components/landing';
 import Project from './components/project';
 import Client from './components/client';
+import API from './util/API';
 
 
 class App extends Component {

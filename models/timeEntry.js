@@ -27,13 +27,13 @@ module.exports = function (sequelize, DataTypes) {
     })
 
     timeEntry.associate = function (models) {
-        timeEntry.belongsTo(models.Client, {
+        timeEntry.belongsTo(models.Project, {
             foreignKey: {
                 allowNull: false
             }
         });
     }
-    return Entries;
+    return timeEntry;
 
 };
 

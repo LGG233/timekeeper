@@ -2,7 +2,12 @@ import axios from "axios";
 
 export default {
     //get routes for accessing db
-    getAllEntries: function (data) {
-        return axios.get("")
+    getAllClients: function (data) {
+        return axios.get("/clients")
+    },
+
+    // post routes for creating new items in db
+    addNewClient: function (data) {
+        return axios.post("/newClient")
     }
 }

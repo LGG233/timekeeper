@@ -1,6 +1,6 @@
 {
     "development": {
-        "username": "trilogy",
+        "username": "Trilogy",
         "password": "123",
         "database": "time_db",
         "host": "127.0.0.1",

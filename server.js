@@ -1,5 +1,6 @@
 var express = require("express");
 var path = require("path");
+var bodyParser = require('body-parser');
 var morgan = require("morgan");
 var bodyParser = require("body-parser");
 var cors = require("cors");
@@ -9,7 +10,7 @@ var app = express();
 var PORT = process.env.PORT || 8080;
 app.use(cors()); // adds routes, both API and view
 
-// Requires models for synching
+// Requires models for syncing
 var db = require("./models");
 
 // Set up express application
@@ -20,7 +21,10 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 // Routes
-require("./routes/api/entriesRoute");
+// require("./routes/index")(app);
+require("./routes/api/timeEntryRoutes");
+require("./routes/api/clientRoutes")(app);
+require("./routes/api/projectRoutes");
 
 if (process.env.NODE_ENV === "production") {
     app.use(express.static("client/build"));
