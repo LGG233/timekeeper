@@ -22,9 +22,9 @@ app.use(bodyParser.json());
 
 // Routes
 // require("./routes/index")(app);
-require("./routes/api/timeEntryRoutes");
+require("./routes/api/timeEntryRoutes")(app);
 require("./routes/api/clientRoutes")(app);
-require("./routes/api/projectRoutes");
+require("./routes/api/projectRoutes")(app);
 
 if (process.env.NODE_ENV === "production") {
     app.use(express.static("client/build"));
