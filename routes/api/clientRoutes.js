@@ -29,7 +29,8 @@ module.exports = function (app) {
             client_name: req.body.entryClientName,
             client_contact: req.body.entryClientContact,
             contact_email: req.body.entryContactEmail,
-            client_services: req.body.entryClientServices
+            client_services: req.body.entryClientServices,
+            client_id: req.body.entryClientId
         })
             .then(function (dbClients) {
                 res.json(dbClients);

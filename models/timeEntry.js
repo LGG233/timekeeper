@@ -1,10 +1,8 @@
 module.exports = function (sequelize, DataTypes) {
     var timeEntry = sequelize.define("timeEntry", {
-        entry_id: {
-            type: DataTypes.INTEGER,
+        project_name: {
+            type: DataTypes.STRING,
             allowNull: false,
-            auto_increment: true,
-            primaryKey: true
         },
         client_name: {
             type: DataTypes.STRING,

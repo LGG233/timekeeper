@@ -1,13 +1,35 @@
 import axios from "axios";
 
 export default {
-    //get routes for accessing db
-    getAllClients: function (data) {
+    //get routes 
+    getAllClients: function () {
         return axios.get("/clients")
     },
 
-    // post routes for creating new items in db
+    getAllProjects: function () {
+        return axios.get("/projects")
+    },
+
+    getAllTime: function () {
+        return axios.get("/time")
+    },
+
+    getTimeEntry: function (id) {
+        return axios.get(`/time/${id}`)
+    },
+
+    // post routes 
     addNewClient: function (data) {
         return axios.post("/newClient")
+    },
+
+    addTimeEntry: function (data) {
+        return axios.post("newtimeentry")
+    },
+
+    // delete routes
+    deleteTimeEntry: function (id) {
+        return axios.delete(`/time/${id}`)
     }
+
 }

@@ -40,9 +40,12 @@ module.exports = function (app) {
     app.post("/newtimeentry", function (req, res) {
         db.timeEntry.create({
             client_name: req.body.entryClientName,
+            project_name: req.body.entryProjectName, // need to put this into the time entry form
             date_of_service: req.body.entryTimeDOS,
             hours: req.body.entryHours,
-            desc_of_work: req.body.entryTimeDesc
+            desc_of_work: req.body.entryTimeDesc,
+            entry_id: req.body.entryID,
+            ProjectProjectId: req.body.projectId
         })
             .then(function (dbTime) {
                 res.json(dbTime);
@@ -53,7 +56,7 @@ module.exports = function (app) {
     app.delete("/time/:id", function (req, res) {
         db.timeEntry.destroy({
             where: {
-                project_id: req.params.id
+                entry_id: req.params.id
             },
         }).then(function (dbTime) {
             res.json(dbTime);

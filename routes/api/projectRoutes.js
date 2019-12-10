@@ -44,7 +44,8 @@ module.exports = function (app) {
             project_description: req.body.entryProjectDesc,
             billing_type: req.body.entryBillingType,
             billing_rate: req.body.entryBillingRate,
-            billing_unit: req.body.entryBillingUnit
+            billing_unit: req.body.entryBillingUnit,
+            project_id: req.body.projectId
         })
             .then(function (dbProject) {
                 res.json(dbProject);

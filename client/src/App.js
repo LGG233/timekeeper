@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import NavBar from './components/navbar';
 import './App.css';
-import Table from './components/table';
+import timeTable from './components/timeTable';
+import projectTable from './components/projectTable';
+import clientTable from './components/clientTable';
 import Entry from './components/time-entry';
 import Landing from './components/landing';
 import Project from './components/project';
@@ -24,7 +26,9 @@ class App extends Component {
               <Switch>
                 <Route exact path="/" component={Landing} />
                 <Route exact path="/Entry" component={Entry} />
-                <Route exact path="/Table" component={Table} />
+                <Route exact path="/timeTable" component={timeTable} />
+                <Route exact path="/projectTable" component={projectTable} />
+                <Route exact path="/clientTable" component={clientTable} />
                 <Route exact path="/Project" component={Project} />
                 <Route exact path="/Client" component={Client} />
               </Switch>
