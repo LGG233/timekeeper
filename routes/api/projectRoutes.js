@@ -14,7 +14,7 @@ module.exports = function (app) {
     app.get("/project/:id", function (req, res) {
         db.Project.findAll({
             where: {
-                project_id: req.params.id
+                id: req.params.id
             },
         }).then(function (dbProject) {
             console.log("request sent");
