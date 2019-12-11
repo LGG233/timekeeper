@@ -39,13 +39,12 @@ module.exports = function (app) {
     // create new client
     app.post("/newProject", function (req, res) {
         db.Project.create({
-            project_name: req.body.entryProjectName,
             client_name: req.body.entryClientName,
+            project_name: req.body.entryProjectName,
             project_description: req.body.entryProjectDesc,
             billing_type: req.body.entryBillingType,
             billing_rate: req.body.entryBillingRate,
-            billing_unit: req.body.entryBillingUnit,
-            project_id: req.body.projectId
+            billing_unit: req.body.entryBillingUnit
         })
             .then(function (dbProject) {
                 res.json(dbProject);
@@ -57,7 +56,7 @@ module.exports = function (app) {
     app.delete("/project/:id", function (req, res) {
         db.Project.destroy({
             where: {
-                project_id: req.params.id
+                id: req.params.id
             },
         }).then(function (dbProject) {
             res.json(dbProject);
@@ -67,12 +66,20 @@ module.exports = function (app) {
     // edit one project
     app.put("/project/:id", function (req, res) {
         db.Project.update(
-            req.body, {
-            where: {
-                project_id: req.params.id
+            {
+                client_name: req.body.entryClientName,
+                project_name: req.body.entryProjectName,
+                project_description: req.body.entryProjectDesc,
+                billing_type: req.body.entryBillingType,
+                billing_rate: req.body.entryBillingRate,
+                billing_unit: req.body.entryBillingUnit
             },
-        }).then(function (dbProject) {
-            res.json(dbProject);
-        });
+            {
+                where: {
+                    id: req.params.id
+                },
+            }).then(function (dbProject) {
+                res.json(dbProject);
+            });
     });
 }

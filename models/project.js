@@ -1,11 +1,5 @@
 module.exports = function (sequelize, DataTypes) {
     var Project = sequelize.define("Project", {
-        // project_id: {
-        //     type: DataTypes.INTEGER,
-        //     allowNull: false,
-        //     auto_increment: true,
-        //     primaryKey: true
-        // },
         client_name: {
             type: DataTypes.STRING,
             allowNull: false
@@ -32,6 +26,8 @@ module.exports = function (sequelize, DataTypes) {
         }
     });
 
+    // Associate Project with multiple time entries 
+    // When Project is deleted, all associated time entries are deleted
     Project.associate = function (models) {
         Project.hasMany(models.TimeEntry, {
             onDelete: "cascade"

@@ -4,8 +4,6 @@ module.exports = function (app) {
     // get all time entries
     app.get("/time", function (req, res) {
         db.timeEntry.findAll().then(function (dbTime) {
-            console.log("request sent");
-            console.log(dbTime);
             res.json(dbTime);
         });
     });
@@ -14,11 +12,9 @@ module.exports = function (app) {
     app.get("/time/:id", function (req, res) {
         db.timeEntry.findAll({
             where: {
-                entry_id: req.params.id
+                id: req.params.id
             },
         }).then(function (dbTime) {
-            console.log("request sent");
-            console.log(dbTime);
             res.json(dbTime);
         });
     });
@@ -30,8 +26,6 @@ module.exports = function (app) {
                 client_name: req.params.id
             },
         }).then(function (dbTime) {
-            console.log("request sent");
-            console.log(dbTime);
             res.json(dbTime);
         });
     });
@@ -44,34 +38,47 @@ module.exports = function (app) {
             date_of_service: req.body.entryTimeDOS,
             hours: req.body.entryHours,
             desc_of_work: req.body.entryTimeDesc,
-            entry_id: req.body.entryID,
-            ProjectProjectId: req.body.projectId
+            ProjectId: req.body.projectId
         })
             .then(function (dbTime) {
                 res.json(dbTime);
             });
     });
 
-    // delete one project
+    // delete one time entry
     app.delete("/time/:id", function (req, res) {
         db.timeEntry.destroy({
             where: {
-                entry_id: req.params.id
+                id: req.params.id
             },
         }).then(function (dbTime) {
             res.json(dbTime);
         });
     });
 
-    // edit one project
+    // edit one time entry
     app.put("/time/:id", function (req, res) {
+        console.log(req.params.entryClientName)
+        console.log(req.body.entryProjectName)
+        console.log(req.body.entryTimeDOS)
+        console.log(req.body.entryTimeDesc)
+        console.log(req.body.projectId)
         db.timeEntry.update(
-            req.body, {
-            where: {
-                project_id: req.params.id
+            {
+                client_name: req.body.entryClientName,
+                project_name: req.body.entryProjectName, // need to put this into the time entry form
+                date_of_service: req.body.entryTimeDOS,
+                hours: req.body.entryHours,
+                desc_of_work: req.body.entryTimeDesc,
+                ProjectId: req.body.projectId
             },
-        }).then(function (dbTime) {
-            res.json(dbTime);
-        });
+            {
+                where: {
+                    id: req.params.id
+                }
+            }).then(function (dbTime) {
+                console.log(req.body.entryClientName);
+                res.json(dbTime);
+            });
     });
 }

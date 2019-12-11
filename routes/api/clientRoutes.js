@@ -14,7 +14,7 @@ module.exports = function (app) {
     app.get("/clients/:id", function (req, res) {
         db.Client.findAll({
             where: {
-                client_id: req.params.id
+                id: req.params.id
             },
         }).then(function (dbClient) {
             console.log("request sent");
@@ -29,8 +29,7 @@ module.exports = function (app) {
             client_name: req.body.entryClientName,
             client_contact: req.body.entryClientContact,
             contact_email: req.body.entryContactEmail,
-            client_services: req.body.entryClientServices,
-            client_id: req.body.entryClientId
+            client_services: req.body.entryClientServices
         })
             .then(function (dbClients) {
                 res.json(dbClients);
@@ -42,7 +41,7 @@ module.exports = function (app) {
     app.delete("/clients/:id", function (req, res) {
         db.Client.destroy({
             where: {
-                client_id: req.params.id
+                id: req.params.id
             },
         }).then(function (dbClient) {
             res.json(dbClient);
@@ -52,12 +51,19 @@ module.exports = function (app) {
     // edit one client
     app.put("/clients/:id", function (req, res) {
         db.Client.update(
-            req.body, {
-            where: {
-                client_id: req.params.id
+            {
+                client_name: req.body.entryClientName,
+                client_contact: req.body.entryClientContact,
+                contact_email: req.body.entryContactEmail,
+                client_services: req.body.entryClientServices
             },
-        }).then(function (dbClient) {
-            res.json(dbClient);
-        });
+            {
+                where: {
+                    id: req.params.id
+                },
+
+            }).then(function (dbClient) {
+                res.json(dbClient);
+            });
     });
 }
