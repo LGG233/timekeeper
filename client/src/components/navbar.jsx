@@ -30,7 +30,7 @@ const NavBar = props => {
                 >
                     New client{" "}
                 </button>
-                <button className="btn displayData"
+                {/* <button className="btn displayData"
                     onClick={function () {
                         window.location.replace("/timeTable");
                     }}
@@ -43,7 +43,7 @@ const NavBar = props => {
                     }}
                 >
                     View projects{" "}
-                </button>
+                </button> */}
                 <button className="btn displayData"
                     onClick={function () {
                         window.location.replace("/clientTable");

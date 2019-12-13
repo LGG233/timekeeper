@@ -30,17 +30,24 @@ module.exports = function (sequelize, DataTypes) {
     // When Project is deleted, all associated time entries are deleted
     Project.associate = function (models) {
         Project.hasMany(models.TimeEntry, {
-            onDelete: "cascade"
+            foreignKey: {
+                name: 'ProjectId',
+                allowNull: false,
+                onDelete: "cascade"
+            }
         });
     };
 
     Project.associate = function (models) {
         Project.belongsTo(models.Client, {
             foreignKey: {
-                allowNull: false
+                name: 'ClientId',
+                allowNull: false,
+                onDelete: "cascade"
             }
         });
     };
 
     return Project;
 }
+

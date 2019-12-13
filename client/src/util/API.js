@@ -6,6 +6,10 @@ export default {
         return axios.get("/clients")
     },
 
+    getClientProjects: function (id) {
+        return axios.get(`/clientprojects/${id}`)
+    },
+
     getAllProjects: function () {
         return axios.get("/projects")
     },
@@ -20,7 +24,12 @@ export default {
 
     // post routes 
     addNewClient: function (data) {
-        return axios.post("/newClient")
+        console.log(data.entryClientContact);
+        return axios.post("/newClient", data)
+    },
+
+    addNewProject: function (data) {
+        return axios.post("/newProject", data)
     },
 
     addTimeEntry: function (data) {

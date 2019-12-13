@@ -38,6 +38,7 @@ class Client extends Component {
             entryContactEmail: this.state.entryContactEmail,
             entryClientServices: this.state.entryClientServices
         }
+        console.log(clientData.entryClientContact);
         this.addNewClient(clientData);
     };
 
@@ -60,10 +61,10 @@ class Client extends Component {
                         <div className="FormCenter">
                             <form onSubmit={this.handleSubmit} className="FormField">
                                 <div className="FormField">
-                                    <label className="FormField__Label" htmlFor="Clientname">Client Name</label>
+                                    <label className="FormField__Label" htmlFor="ClientName">Client Name</label>
                                     <input
                                         type="text"
-                                        id="Clientname"
+                                        id="ClientName"
                                         className="FormField__Input"
                                         placeholder="Client Name"
                                         name="entryClientName"
@@ -72,10 +73,10 @@ class Client extends Component {
                                     />
                                 </div>
                                 <div className="FormField">
-                                    <label className="FormField__Label" htmlFor="Clientcontact">Client Contact</label>
+                                    <label className="FormField__Label" htmlFor="ClientContact">Client Contact</label>
                                     <input
                                         type="text"
-                                        id="Clientcontact"
+                                        id="ClientContact"
                                         className="FormField__Input"
                                         placeholder="Client Contact"
                                         name="entryClientContact"

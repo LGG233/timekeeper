@@ -31,8 +31,8 @@ class projectTable extends Component {
 
     componentDidMount() {
         console.log("component did mount");
-        API.getAllProjects().then(res => {
-            console.log("API request sent");
+        API.getClientProjects(localStorage.getItem("client_name")).then(res => {
+            console.log(res);
             this.setState({
                 data: res.data
             })
@@ -54,11 +54,12 @@ class projectTable extends Component {
                                 <br></br>
                                 <span>Billing Rate: {project.billing_rate}</span>
                                 <br></br>
-                                <span>Project ID: {project.project_id}</span>
+                                <span>Project ID: {project.id}</span>
                                 <br></br>
                                 <button className="btn btn-primary card-btn">Edit</button>
                                 <button className="btn btn-primary card-btn">Delete</button>
                                 <button className="btn btn-primary card-btn">Enter Time</button>
+                                <button className="btn btn-primary card-btn">View Time</button>
                             </div>
                         </div>
                     </div>

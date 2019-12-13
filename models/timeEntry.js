@@ -4,10 +4,10 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        client_name: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
+        // client_name: {
+        //     type: DataTypes.STRING,
+        //     allowNull: false,
+        // },
         date_of_service: {
             type: DataTypes.DATE,
             allowNull: false,
@@ -27,11 +27,13 @@ module.exports = function (sequelize, DataTypes) {
     timeEntry.associate = function (models) {
         timeEntry.belongsTo(models.Project, {
             foreignKey: {
-                allowNull: false
+                name: 'ProjectId',
+                allowNull: false,
+                onDelete: "cascade"
             }
-        });
-    }
-    return timeEntry;
+        })
+    };
 
-};
+    return timeEntry;
+}
 

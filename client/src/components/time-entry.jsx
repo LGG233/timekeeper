@@ -5,7 +5,7 @@ class Entry extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            entry_id: "",
+            id: "",
             project_name: "",
             client_name: "",
             date_of_service: "",

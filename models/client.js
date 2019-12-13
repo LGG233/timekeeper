@@ -24,11 +24,15 @@ module.exports = function (sequelize, DataTypes) {
 
     Client.associate = function (models) {
         Client.hasMany(models.Project, {
-            onDelete: "cascade"
+            foreignKey: {
+                name: 'ClientId',
+                allowNull: false,
+                onDelete: "cascade"
+            }
+
         });
     };
 
     return Client;
 }
 
-// key(client_name)

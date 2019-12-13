@@ -10,7 +10,7 @@ class timeTable extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            entry_id: "",
+            id: "",
             project_name: "",
             client_name: "",
             date_of_service: "",
@@ -58,7 +58,7 @@ class timeTable extends Component {
                                 <br></br>
                                 <span>Time: {time.hours}</span>
                                 <br></br>
-                                <span>Time entry ID: {time.entry_id}</span>
+                                <span>Time entry ID: {time.id}</span>
                                 <br></br>
                                 <button className="btn btn-primary card-btn">Edit</button>
                                 <button className="btn btn-primary card-btn" onClick={() => this.handleDeleteClick(time.entry_id)}>Delete</button>

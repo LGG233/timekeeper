@@ -4,8 +4,6 @@ module.exports = function (app) {
     // get all clients 
     app.get("/clients", function (req, res) {
         db.Client.findAll().then(function (dbClient) {
-            console.log("request sent");
-            console.log(dbClient);
             res.json(dbClient);
         });
     });
@@ -25,6 +23,7 @@ module.exports = function (app) {
 
     // create new client
     app.post("/newClient", function (req, res) {
+        console.log(req.body.entryClientContact);
         db.Client.create({
             client_name: req.body.entryClientName,
             client_contact: req.body.entryClientContact,
