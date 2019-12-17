@@ -6,7 +6,7 @@ import moment from 'moment';
 // Pseudocode
 // 3) button attached to row for editing that calls up modal 
 
-class timeTable extends Component {
+class projectTimeTable extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -22,23 +22,26 @@ class timeTable extends Component {
 
     componentDidMount() {
         console.log("component did mount");
-        API.getAllTime().then(res => {
-            console.log("API request sent");
+        let id = localStorage.getItem("project_id");
+        console.log(id);
+        API.getProjectTime(id).then(res => {
+            console.log("Searching for time for " + id)
             this.setState({
                 data: res.data
-            })
+            });
         })
     };
 
     handleDeleteClick = (id) => {
         localStorage.setItem("entry_id", id);
-        API.deleteTimeEntry(localStorage.getItem("entry_id")).then(res => {
+        console.log(id)
+        API.deleteTimeEntry(id).then(res => {
             this.setState({
                 data: res.data
             });
         })
         localStorage.removeItem("entry_id");
-        window.location.replace("/timeTable", this.props)
+        window.location.replace("/projectTimeTable")
     }
 
     addNewProject = (id, name) => {
@@ -51,22 +54,22 @@ class timeTable extends Component {
     render() {
         return (
             <div>
-                <h1>Time Entries for {localStorage.getItem("client_name")}</h1>
+                <h1>Time Entries for {localStorage.getItem("client_name")} on {localStorage.getItem("project_name")}</h1>
                 {this.state.data.map(time => (
                     <div className="container card-space">
                         <div className="card">
-                            <div className="card-header"><h3>{time.project_name}</h3></div>
+                            {/* <div className="card-header"><h3>{time.project_name}</h3></div> */}
                             <div className="card-body">
+                                <span>{moment.utc(time.date_of_service).format("ll")}</span>
+                                <br></br>
+                                <span>{time.hours} hours</span>
+                                <br></br>
                                 <span>{time.desc_of_work}</span>
                                 <br></br>
-                                <span>Date: {moment.utc(time.date_of_service).format("ll")}</span>
-                                <br></br>
-                                <span>Time: {time.hours}</span>
-                                <br></br>
-                                <span>Time entry ID: {time.id}</span>
+                                <span>Entry ID: {time.id}</span>
                                 <br></br>
                                 <button className="btn btn-primary card-btn">Edit</button>
-                                <button className="btn btn-primary card-btn" onClick={() => this.handleDeleteClick(time.entry_id)}>Delete</button>
+                                <button className="btn btn-primary card-btn" onClick={() => this.handleDeleteClick(time.id)}>Delete</button>
                             </div>
                         </div>
                     </div>
@@ -77,4 +80,4 @@ class timeTable extends Component {
     }
 }
 
-export default timeTable;
+export default projectTimeTable;

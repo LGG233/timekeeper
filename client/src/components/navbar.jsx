@@ -9,19 +9,12 @@ const NavBar = props => {
                 Timekeeper{" "}
             </a>
             <div>
-                <button className="btn newEntry"
+                <button className="btn displayData"
                     onClick={function () {
-                        window.location.replace("/Entry");
+                        window.location.replace("/clientTable");
                     }}
                 >
-                    New time entry{" "}
-                </button>
-                <button className="btn newProject"
-                    onClick={function () {
-                        window.location.replace("/Project");
-                    }}
-                >
-                    New project{" "}
+                    View clients{" "}
                 </button>
                 <button className="btn newClient"
                     onClick={function () {
@@ -36,20 +29,13 @@ const NavBar = props => {
                     }}
                 >
                     View time entries{" "}
-                </button>
-                <button className="btn displayData"
-                    onClick={function () {
-                        window.location.replace("/projectTable");
-                    }}
-                >
-                    View projects{" "}
                 </button> */}
                 <button className="btn displayData"
                     onClick={function () {
-                        window.location.replace("/clientTable");
+                        window.location.replace("/viewAllProjects");
                     }}
                 >
-                    View clients{" "}
+                    View all projects{" "}
                 </button>
             </div >
         </nav>);

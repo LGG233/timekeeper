@@ -8,7 +8,7 @@ import "./table.css";
 
 // 4) button attached to row for deleting client and all associated project and time entries 
 
-class clientTable extends Component {
+class clientDetail extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -23,7 +23,8 @@ class clientTable extends Component {
 
     componentDidMount() {
         console.log("component did mount");
-        API.getAllClients().then(res => {
+        let id = localStorage.getItem("client_id");
+        API.getOneClient(id).then(res => {
             console.log("API request sent");
             this.setState({
                 data: res.data
@@ -36,12 +37,6 @@ class clientTable extends Component {
         localStorage.setItem("client_id", id);
         localStorage.setItem("client_name", name);
         window.location.replace("/projectTable");
-    }
-
-    viewClientDetail = (id, name) => {
-        localStorage.setItem("client_id", id);
-        localStorage.setItem("client_name", name);
-        window.location.replace("/clientDetail");
     }
 
     editClient = (id, name) => {
@@ -62,17 +57,24 @@ class clientTable extends Component {
     render() {
         return (
             <div>
-                <h1>Clients</h1>
+                <h1>Client Detail</h1>
                 {this.state.data.map(client => (
                     <div className="container-fluid">
-                        <div className="row">
-                            <span id="client-list"><ul><li><h5>{client.client_name}</h5></li></ul></span>
-                            <button className="btn btn-outline-secondary btn-sm card-btn" onClick={() => this.viewClientDetail(client.id, client.client_name)}>View Detail</button>
-                            <button className="btn btn-outline-secondary btn-sm card-btn" onClick={() => this.viewClientProjects(client.id, client.client_name)}>View Projects</button>
-                            <button className="btn btn-outline-secondary btn-sm card-btn" onClick={() => this.addNewProject(client.id, client.client_name)}>New Project</button>
-                            <button className="btn btn-outline-secondary btn-sm card-btn">View Time</button>
-                            <button className="btn btn-outline-secondary btn-sm card-btn" onClick={() => this.editClient(client.id, client.client_name)}>Edit Client</button>
-                            <button className="btn btn-outline-secondary btn-sm card-btn" onClick={() => this.handleClientDelete(client.id)}>Delete Client</button>
+                        <div className="card">
+                            <div className="card-header"><h3>{client.client_name}</h3></div>
+                            <div className="card-body">
+                                <span>Contact: {client.client_contact} ({client.contact_email})</span>
+                                <br></br>
+                                <span>Services: {client.client_services}</span>
+                                <br></br>
+                                <span>Client ID: {client.id}</span>
+                                <br></br>
+                                <button className="btn btn-primary card-btn">View Time</button>
+                                <button className="btn btn-primary card-btn" onClick={() => this.viewClientProjects(client.id, client.client_name)}>View Projects</button>
+                                <button className="btn btn-primary card-btn" onClick={() => this.addNewProject(client.id, client.client_name)}>New Project</button>
+                                <button className="btn btn-primary card-btn" onClick={() => this.editClient(client.id, client.client_name)}>Edit Client</button>
+                                <button className="btn btn-primary card-btn" onClick={() => this.handleClientDelete(client.id)}>Delete Client</button>
+                            </div>
                         </div>
                     </div>
                 ))}
@@ -81,4 +83,4 @@ class clientTable extends Component {
     }
 }
 
-export default clientTable;
+export default clientDetail;

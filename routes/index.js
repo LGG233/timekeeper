@@ -4,7 +4,7 @@ const apiRoutes = require("./api");
 
 const cliRoute = require("./api/clientRoutes");
 const projRoute = require("./api/projectRoutes");
-const timeRoute = require("./api/timeEntryRoutes");
+const timeRoute = require("./api/timeRoutes");
 
 //API routes
 router.use("/", cliRoute);

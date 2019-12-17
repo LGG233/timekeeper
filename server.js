@@ -22,7 +22,7 @@ app.use(bodyParser.json());
 
 // Routes
 // require("./routes/index")(app);
-require("./routes/api/timeEntryRoutes")(app);
+require("./routes/api/timeRoutes")(app);
 require("./routes/api/clientRoutes")(app);
 require("./routes/api/projectRoutes")(app);
 

@@ -9,7 +9,7 @@ module.exports = function (app) {
     });
 
     // get one client 
-    app.get("/clients/:id", function (req, res) {
+    app.get("/client/:id", function (req, res) {
         db.Client.findAll({
             where: {
                 id: req.params.id
@@ -48,7 +48,7 @@ module.exports = function (app) {
     });
 
     // edit one client
-    app.put("/clients/:id", function (req, res) {
+    app.put("/client/:id", function (req, res) {
         db.Client.update(
             {
                 client_name: req.body.entryClientName,

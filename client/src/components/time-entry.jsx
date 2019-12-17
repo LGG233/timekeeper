@@ -15,57 +15,104 @@ class Entry extends Component {
         }
     }
 
-    componentDidMount = (id) => {
-        console.log("component did mount");
-        API.getTimeEntry(localStorage.getItem("client_id")).then(res => {
-            console.log("API request sent");
-            this.setState({
-                data: res.data
-            })
-            console.log(localStorage.getItem("client_name"));
-            console.log(localStorage.getItem("client_id"));
-            console.log(res.data[0].client_name);
-            console.log(this.state.client_name);
-        })
+    // componentDidMount = (id) => {
+    //     console.log("component did mount");
+    //     console.log(localStorage.getItem("client_name"));
+    //     console.log(localStorage.getItem("client_id"));
+    //     console.log(localStorage.getItem("project_id"));
+    //     console.log(localStorage.getItem("project_name"));
+    // console.log(res.data[0].client_name);
+    // console.log(this.state.client_name);
+    // API.getTimeEntry(localStorage.getItem("client_id")).then(res => {
+    //     console.log("API request sent");
+    //     this.setState({
+    //         data: res.data
+    //     })
+    // })
+    // };
+
+    handleInputChange = event => {
+        const { name, value } = event.target;
+        this.setState({
+            [name]: value
+        });
+    };
+
+    handleChange = event => {
+        let target = event.target;
+        let name = target.name;
+
+        this.setState({
+            [name]: event.target.value
+        });
+    };
+
+    handleSubmit = event => {
+        event.preventDefault();
+        console.log(localStorage.getItem("client_name"));
+        console.log(this.state);
+        let timeData = {
+            entryDate: this.state.entryDate,
+            entryProjectName: localStorage.getItem("project_name"),
+            entryTime: this.state.entryTime,
+            entryDesc: this.state.entryDesc,
+            entryClientName: localStorage.getItem("client_name"),
+            ProjectId: localStorage.getItem("project_id")
+        }
+        console.log(timeData);
+        this.addTimeEntry(timeData);
+    };
+
+    addTimeEntry = (data) => {
+        API.addTimeEntry(data)
+            .then(data => console.log(data))
+            .catch(err => console.log(err))
+        window.location.replace("/timeTable");
     };
 
 
     render() {
         return (
-            <form>
+            <form onSubmit={this.handleSubmit} className="FormField">
                 <div className="form-group">
+                    <h4>New Time Entry for {localStorage.getItem("client_name")} on {localStorage.getItem("project_name")} </h4>
                     <label for="entryDate">Date</label>
-                    <input type="date" class="form-control" id="entryDate" placeholder="Enter date"></input>
+                    <input
+                        type="date"
+                        className="form-control"
+                        id="entryDate"
+                        placeholder="Enter date"
+                        name="entryDate"
+                        value={this.state.entryDate}
+                        onChange={this.handleChange} />
                 </div>
                 <div className="form-group">
-                    <label for="entryTime">Time</label>
-                    <input type="text" class="form-control" id="entryTime" placeholder="Enter time"></input>
+                    <label for="entryTime">Time Spent</label>
+                    <input
+                        type="text"
+                        className="form-control"
+                        id="entryTime"
+                        placeholder="Enter time"
+                        name="entryTime"
+                        value={this.state.entryTime}
+                        onChange={this.handleChange} />
                 </div>
                 <div className="form-group">
-                    <label for="entryClient">Client</label>
-                    <input type="text" class="form-control" id="entryClient" placeholder="Enter Client"></input>
+                    <label for="entryDesc">Work Description</label>
+                    <input
+                        type="text"
+                        className="form-control"
+                        id="entryDesc"
+                        placeholder="Describe Services"
+                        name="entryDesc"
+                        value={this.state.entryDesc}
+                        onChange={this.handleChange} />
                 </div>
-                <div className="form-group">
-                    <label for="entryDesc">Description</label>
-                    <input type="text" class="form-control" id="entryDesc" placeholder="Describe Services"></input>
-                </div>
-                <div className="form-group">
-                    <label for="clientName">Client Name</label>
-                    <input type="text" class="form-control" id="clientName">{this.state.data.client_name}</input>
-                </div>
-                <div className="form-group">
-                    <label for="projectId">Project ID</label>
-                    <input type="text" class="form-control" id="projectId">{this.state.project_id}</input>
-                </div>
-                <div className="form-group">
-                    <label for="clientName">Project Name</label>
-                    <input type="text" class="form-control" id="projectName">{this.project_name}</input>
-                </div>
-                <div className="form-check">
+                {/* <div className="form-check">
                     <input className="form-check-input" type="radio" name="billed" id="billed" value="option1" unchecked></input>
                     <label className="form-check-label" for="exampleRadios1">
                         Billed?</label>
-                </div>
+                </div> */}
                 <button className="btn entryCancel">
                     Cancel{" "}
                 </button>
@@ -79,9 +126,3 @@ class Entry extends Component {
 
 export default Entry;
 
-// API.addTimeEntry(localStorage.getItem("client_id")).then(res => {
-//     this.setState({
-//         data: res.data
-//     });
-// })
-// localStorage.removeItem("entry_id");

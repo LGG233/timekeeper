@@ -7,7 +7,6 @@ class Project extends Component {
         this.state = {
             entryProjectClient: "",
             entryProjectName: "",
-            // entryProjectClient: "",
             entryProjectDesc: "",
             entryBillingType: "",
             entryBillingRate: "",
@@ -61,6 +60,7 @@ class Project extends Component {
         return (
             <form onSubmit={this.handleSubmit} className="FormField">
                 <div className="form-group">
+                    <h4>New Project for {localStorage.getItem("client_name")} </h4>
                     <div>
                         <label for="entryProjectName">Project</label>
                         <input

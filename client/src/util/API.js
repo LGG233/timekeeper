@@ -6,6 +6,10 @@ export default {
         return axios.get("/clients")
     },
 
+    getOneClient: function (id) {
+        return axios.get(`/client/${id}`)
+    },
+
     getClientProjects: function (id) {
         return axios.get(`/clientprojects/${id}`)
     },
@@ -14,12 +18,24 @@ export default {
         return axios.get("/projects")
     },
 
+    getOneProject: function (id) {
+        return axios.get(`/project/${id}`)
+    },
+
     getAllTime: function () {
         return axios.get("/time")
     },
 
     getTimeEntry: function (id) {
         return axios.get(`/time/${id}`)
+    },
+
+    getClientTime: function (id) {
+        return axios.get(`/clienttime/${id}`)
+    },
+
+    getProjectTime: function (id) {
+        return axios.get(`/projectTime/${id}`)
     },
 
     // post routes 
@@ -33,12 +49,29 @@ export default {
     },
 
     addTimeEntry: function (data) {
-        return axios.post("newtimeentry")
+        return axios.post("/newtimeentry", data)
     },
 
     // delete routes
     deleteTimeEntry: function (id) {
+        console.log(id);
         return axios.delete(`/time/${id}`)
-    }
+    },
 
+    deleteClient: function (id) {
+        return axios.delete(`/clients/${id}`)
+    },
+
+    deleteProject: function (id) {
+        return axios.delete(`/project/${id}`)
+    },
+
+    // put routes
+    editClient: function (id, data) {
+        return axios.put(`/client/${id}`, data)
+    },
+
+    editProject: function (id, data) {
+        return axios.put(`/project/${id}`, data)
+    }
 }

@@ -30,15 +30,26 @@ module.exports = function (app) {
         });
     });
 
+    // get all time for one project 
+    app.get("/projectTime/:id", function (req, res) {
+        db.timeEntry.findAll({
+            where: {
+                ProjectId: req.params.id
+            },
+        }).then(function (dbTime) {
+            res.json(dbTime);
+        });
+    });
+
     // create new client
     app.post("/newtimeentry", function (req, res) {
         db.timeEntry.create({
             client_name: req.body.entryClientName,
             project_name: req.body.entryProjectName, // need to put this into the time entry form
-            date_of_service: req.body.entryTimeDOS,
-            hours: req.body.entryHours,
-            desc_of_work: req.body.entryTimeDesc,
-            ProjectId: req.body.projectId
+            date_of_service: req.body.entryDate,
+            hours: req.body.entryTime,
+            desc_of_work: req.body.entryDesc,
+            ProjectId: req.body.ProjectId
         })
             .then(function (dbTime) {
                 res.json(dbTime);
@@ -58,11 +69,6 @@ module.exports = function (app) {
 
     // edit one time entry
     app.put("/time/:id", function (req, res) {
-        console.log(req.params.entryClientName)
-        console.log(req.body.entryProjectName)
-        console.log(req.body.entryTimeDOS)
-        console.log(req.body.entryTimeDesc)
-        console.log(req.body.projectId)
         db.timeEntry.update(
             {
                 client_name: req.body.entryClientName,

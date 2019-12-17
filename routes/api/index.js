@@ -2,7 +2,7 @@ const router = require("express").Router();
 
 const cliRoute = require("./clientRoutes");
 const projRoute = require("./projectRoutes");
-const timeRoute = require("./timeEntryRoutes");
+const timeRoute = require("./timeRoutes");
 
 router.use("/clients", cliRoute);
 router.use("/projects", projRoute);
