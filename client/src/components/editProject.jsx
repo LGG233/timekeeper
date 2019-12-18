@@ -68,85 +68,90 @@ class editProject extends Component {
             .catch(err => console.log(err))
     };
 
+    handleCancel = event => {
+        window.location.replace("/clientTable")
+    };
+
+
     render() {
         return (
             <div className="container-fluid">
                 <div className="row">
-                    <div className="col-md-6">
-                        <div className="jumbotron">
-                            <h3 className="jumboBanner">Edit {localStorage.getItem("client_name")} Project: {this.state.data.project_name}</h3>
-                            <p>Project Description: {this.state.data.project_description}</p>
-                            <p>Billing Type: {this.state.data.billing_type}</p>
-                            <p>Billing Rate: ${this.state.data.billing_rate} / unit</p>
-                            <p>Billing Unit: {this.state.data.billing_unit}</p>
-                        </div>
-                    </div>
-                    <div className="col md 6 editClientPage">
+                    <h4>Edit {this.state.data.project_name} project for {this.state.data.client_name}</h4>
+                    <div className="container">
                         <div className="FormCenter">
                             <form onSubmit={this.handleSubmit} className="FormField">
                                 <div className="FormField">
-                                    <label className="FormField__Label" htmlFor="ProjectName">Project Name: </label>
+                                    <label htmlFor="entryProjectName">Project Name: {this.state.data.project_name}</label>
                                     <input
                                         type="text"
-                                        id="ProjectName"
-                                        className="FormField__Input"
+                                        id="entryProjectName"
+                                        className="form-control"
+                                        placeholder={this.state.data.project_name}
                                         name="entryProjectName"
                                         value={this.state.entryProjectName}
                                         onChange={this.handleChange}
                                     />
                                 </div>
                                 <div className="FormField">
-                                    <label className="FormField__Label" htmlFor="ProjectDesc">Description: </label>
+                                    <label htmlFor="entryProjectDesc">Description: {this.state.data.project_description}</label>
                                     <input
                                         type="text"
-                                        id="ProjectDesc"
-                                        className="FormField__Input"
+                                        id="entryProjectDesc"
+                                        className="form-control"
+                                        placeholder={this.state.data.project_description}
                                         name="entryProjectDesc"
                                         value={this.state.entryProjectDesc}
                                         onChange={this.handleChange}
                                     />
                                 </div>
                                 <div className="FormField">
-                                    <label className="FormField__Label" htmlFor="BillingType">Billing Type: </label>
+                                    <label htmlFor="entryBillingType">Billing Type: {this.state.data.billing_type}</label>
                                     <input
                                         type="text"
-                                        id="BillingType"
-                                        className="FormField__Input"
+                                        id="entryBillingType"
+                                        className="form-control"
+                                        placeholder={this.state.data.billing_type}
                                         name="entryBillingType"
                                         value={this.state.entryBillingType}
                                         onChange={this.handleChange}
                                     />
                                 </div>
                                 <div className="FormField">
-                                    <label className="FormField__Label" htmlFor="BillingRate">Billing Rate ($): </label>
+                                    <label htmlFor="entryBillingRate">Billing Rate: ${this.state.data.billing_rate}</label>
                                     <input
                                         type="text"
-                                        id="Billing Rate"
-                                        className="FormField__Input"
+                                        id="entryBillingRate"
+                                        className="form-control"
+                                        placeholder={this.state.data.billing_rate}
                                         name="entryBillingRate"
                                         value={this.state.entryBillingRate}
                                         onChange={this.handleChange}
                                     />
                                 </div>
                                 <div className="FormField">
-                                    <label className="FormField__Label" htmlFor="BillingUnit">Billing Unit: </label>
+                                    <label htmlFor="entryBillingUnit">Billing Unit: {this.state.data.billing_unit}</label>
                                     <input
                                         type="text"
-                                        id="BillingUnit"
-                                        className="FormField__Input"
+                                        id="entryBillingUnit"
+                                        className="form-control"
+                                        placeholder={this.state.data.billing_unit}
                                         name="entryBillingUnit"
                                         value={this.state.entryBillingUnit}
                                         onChange={this.handleChange}
                                     />
                                 </div>
                             </form>
+                            <br></br>
                             <button
-                                className="btn projectSubmit"
+                                className="btn btn-primary projectSubmit"
                                 onClick={this.handleSubmit}
                             >
-                                <h4>Submit </h4>
+                                Submit{" "}
                             </button >
-                            <button className="btn projectCancel">
+                            <button
+                                className="btn btn-primary projectCancel"
+                                onClick={this.handleCancel}>
                                 Cancel{" "}
                             </button>
                         </div>

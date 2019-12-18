@@ -22,7 +22,8 @@ class timeTable extends Component {
 
     componentDidMount() {
         console.log("component did mount");
-        API.getAllTime().then(res => {
+        let id = localStorage.getItem("client_name");
+        API.getClientTime(id).then(res => {
             console.log("API request sent");
             this.setState({
                 data: res.data
@@ -31,12 +32,15 @@ class timeTable extends Component {
     };
 
     handleDeleteClick = (id) => {
-        localStorage.setItem("entry_id", id);
-        API.deleteTimeEntry(localStorage.getItem("entry_id")).then(res => {
-            this.setState({
-                data: res.data
-            });
-        })
+        var result = window.confirm("Are you sure you want to delete this time entry?")
+        if (result) {
+            localStorage.setItem("entry_id", id);
+            API.deleteTimeEntry(localStorage.getItem("entry_id")).then(res => {
+                this.setState({
+                    data: res.data
+                });
+            })
+        }
         localStorage.removeItem("entry_id");
         window.location.replace("/timeTable", this.props)
     }
@@ -52,26 +56,33 @@ class timeTable extends Component {
         return (
             <div>
                 <h1>Time Entries for {localStorage.getItem("client_name")}</h1>
-                {this.state.data.map(time => (
-                    <div className="container card-space">
-                        <div className="card">
-                            <div className="card-header"><h3>{time.project_name}</h3></div>
-                            <div className="card-body">
-                                <span>{time.desc_of_work}</span>
-                                <br></br>
-                                <span>Date: {moment.utc(time.date_of_service).format("ll")}</span>
-                                <br></br>
-                                <span>Time: {time.hours}</span>
-                                <br></br>
-                                <span>Time entry ID: {time.id}</span>
-                                <br></br>
-                                <button className="btn btn-primary card-btn">Edit</button>
-                                <button className="btn btn-primary card-btn" onClick={() => this.handleDeleteClick(time.entry_id)}>Delete</button>
-                            </div>
-                        </div>
-                    </div>
-                ))}
-
+                <table className="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Project</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Time</th>
+                            <th scope="col">Work performed</th>
+                            <th scope="col">Billed?</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {this.state.data.map(time => (
+                            <tr>
+                                <th scope="row">{time.project_name}</th>
+                                <td>{moment.utc(time.date_of_service).format("ll")}</td>
+                                <td>{time.hours}</td>
+                                <td>{time.desc_of_work}</td>
+                                <td></td>
+                                <td>
+                                    <button className="btn btn-primary card-btn">Edit</button>
+                                    <button className="btn btn-primary card-btn" onClick={() => this.handleDeleteClick(time.entry_id)}>Delete</button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
             </div>
         );
     }

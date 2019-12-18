@@ -15,17 +15,12 @@ class editClient extends Component {
     };
 
     componentDidMount() {
-        console.log("component did mount");
         let id = localStorage.getItem("client_id");
         console.log(id);
         API.getOneClient(id).then(res => {
-            console.log("Searching for client ID: " + id)
             this.setState({
                 data: res.data[0]
             });
-            console.log(this.state.data.client_name);
-            console.log(this.state.data.contact_email);
-            console.log(this.state.data.client_services);
         })
     };
 
@@ -60,6 +55,10 @@ class editClient extends Component {
         window.location.replace("/clientDetail");
     };
 
+    handleCancel = event => {
+        window.location.replace("/clientTable")
+    };
+
     editClient = (id, data) => {
         API.editClient(id, data)
             .then(data => console.log(data))
@@ -70,74 +69,69 @@ class editClient extends Component {
         return (
             <div className="container-fluid">
                 <div className="row">
-                    <div className="col-md-6">
-                        <div className="jumbotron">
-                            <h3 className="jumboBanner">Edit Client: {localStorage.getItem("client_name")}</h3>
-                            <p>{this.state.data.client_contact}</p>
-                            <p>{this.state.data.contact_email}</p>
-                            <p>{this.state.data.client_services}</p>
-                        </div>
-                    </div>
-                    <div className="col md 6 editClientPage">
+                    <h4>Edit Client: {this.state.data.client_name}</h4>
+                    <div className="container">
                         <div className="FormCenter">
                             <form onSubmit={this.handleSubmit} className="FormField">
                                 <div className="FormField">
-                                    <label className="FormField__Label" htmlFor="ClientName">Client Name</label>
+                                    <label htmlFor="entryClientName">Client Name: {this.state.data.client_name}</label>
                                     <input
                                         type="text"
-                                        id="ClientName"
-                                        className="FormField__Input"
-                                        placeholder="Client Name"
+                                        id="entryClientName"
+                                        className="form-control"
+                                        placeholder={this.state.data.client_name}
                                         name="entryClientName"
-                                        body={localStorage.getItem("client_name")}
                                         value={this.state.entryClientName}
                                         onChange={this.handleChange}
                                     />
                                 </div>
                                 <div className="FormField">
-                                    <label className="FormField__Label" htmlFor="ClientContact">Client Contact</label>
+                                    <label htmlFor="entryClientContact">Client Contact: {this.state.data.client_contact}</label>
                                     <input
                                         type="text"
-                                        id="ClientContact"
-                                        className="FormField__Input"
-                                        placeholder="Client Contact"
+                                        id="entryClientContact"
+                                        className="form-control"
+                                        placeholder={this.state.data.client_contact}
                                         name="entryClientContact"
                                         value={this.state.entryClientContact}
                                         onChange={this.handleChange}
                                     />
                                 </div>
                                 <div className="FormField">
-                                    <label className="FormField__Label" htmlFor="Clientname">Contact Email</label>
+                                    <label htmlFor="entryContactEmail">Contact Email: {this.state.data.contact_email}</label>
                                     <input
                                         type="email"
-                                        id="Contactemail"
-                                        className="FormField__Input"
-                                        placeholder="Contact Email"
+                                        id="entryContactEmail"
+                                        className="form-control"
+                                        placeholder={this.state.data.contact_email}
                                         name="entryContactEmail"
                                         value={this.state.entryContactEmail}
                                         onChange={this.handleChange}
                                     />
                                 </div>
                                 <div className="FormField">
-                                    <label className="FormField__Label" htmlFor="Clientservices">Client Services</label>
+                                    <label htmlFor="entryClientServices">Client Services: {this.state.data.client_services}</label>
                                     <input
                                         type="text"
-                                        id="Clientservices"
-                                        className="FormField__Input"
-                                        placeholder="Client Services"
+                                        id="entryClientServices"
+                                        className="form-control"
+                                        placeholder={this.state.data.client_services}
                                         name="entryClientServices"
                                         value={this.state.entryClientServices}
                                         onChange={this.handleChange}
                                     />
                                 </div>
                             </form>
+                            <br></br>
                             <button
-                                className="btn projectSubmit"
+                                className="btn btn-primary projectSubmit"
                                 onClick={this.handleSubmit}
                             >
-                                <h4>Submit </h4>
+                                Submit{" "}
                             </button >
-                            <button className="btn projectCancel">
+                            <button
+                                className="btn btn-primary projectCancel"
+                                onClick={this.handleCancel}>
                                 Cancel{" "}
                             </button>
                         </div>

@@ -46,6 +46,7 @@ class projectTable extends Component {
         localStorage.setItem("project_name", project);
         window.location.replace("/projectTimeTable");
     }
+
     enterTimeClick = (id, name, project) => {
         localStorage.setItem("project_id", id);
         localStorage.setItem("client_name", name);
@@ -53,31 +54,49 @@ class projectTable extends Component {
         window.location.replace("/Entry");
     }
 
+    editProject = (id) => {
+        localStorage.setItem("project_id", id);
+        window.location.replace("/editProject");
+    }
+
+    handleProjectDelete = (id) => {
+        localStorage.setItem("project_id", id);
+        API.deleteProject(id).then(res => {
+            console.log("API request sent");
+        })
+        window.location.replace("/projectTable");
+    }
+    viewProjectDetail = (id) => {
+        localStorage.setItem("project_id", id);
+        window.location.replace("/projectDetail");
+    }
+
     render() {
         return (
             <div>
-                <h1>Projects for {localStorage.getItem("client_name")}</h1>
-                {this.state.data.map(project => (
-                    <div className="container-fluid card-space">
-                        <div className="card">
-                            <div className="card-header"><h3>{project.project_name}</h3></div>
-                            <div className="card-body">
-                                <span>{project.project_description}</span>
-                                <br></br>
-                                <span>Billing Unit: {project.billing_unit}</span>
-                                <br></br>
-                                <span>Billing Rate: {project.billing_rate}</span>
-                                <br></br>
-                                <span>Project ID: {project.id}</span>
-                                <br></br>
-                                <button className="btn btn-primary card-btn">Edit</button>
-                                <button className="btn btn-primary card-btn">Delete</button>
-                                <button className="btn btn-primary card-btn" onClick={() => this.enterTimeClick(project.id, project.client_name, project.project_name)}>Enter Time</button>
-                                <button className="btn btn-primary card-btn" onClick={() => this.viewProjectTime(project.id, project.client_name, project.project_name)}>View Time</button>
-                            </div>
-                        </div>
-                    </div>
-                ))}
+                <h4>Projects for {localStorage.getItem("client_name")}</h4>
+                <table className="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Project</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {this.state.data.map(project => (
+                            <tr>
+                                <th scope="row">{project.project_name}</th>
+                                <td>
+                                    <button className="btn btn-primary card-btn" onClick={() => this.viewProjectDetail(project.id)}>View Detail</button>
+                                    <button className="btn btn-primary card-btn" onClick={() => this.editProject(project.id)}>Edit Project</button>
+                                    <button className="btn btn-primary card-btn" onClick={() => this.handleProjectDelete(project.id)}>Delete Project</button>
+                                    <button className="btn btn-primary card-btn" onClick={() => this.enterTimeClick(project.id, project.client_name, project.project_name)}>Enter Time</button>
+                                    <button className="btn btn-primary card-btn" onClick={() => this.viewProjectTime(project.id, project.client_name, project.project_name)}>View Time</button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
 
             </div>
         );

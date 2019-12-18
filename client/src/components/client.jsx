@@ -40,6 +40,7 @@ class Client extends Component {
         }
         console.log(clientData.entryClientContact);
         this.addNewClient(clientData);
+        window.location.replace("/clientTable");
     };
 
     addNewClient = (data) => {
@@ -52,57 +53,53 @@ class Client extends Component {
         return (
             <div className="container-fluid">
                 <div className="row">
-                    <div className="col-md-6">
-                        <div className="jumbotron">
-                            <h3 className="jumboBanner">Create a Client</h3>
-                        </div>
-                    </div>
-                    <div className="col md 6 newClientPage">
+                    <h4>New Client</h4>
+                    <div className="container">
                         <div className="FormCenter">
                             <form onSubmit={this.handleSubmit} className="FormField">
                                 <div className="FormField">
-                                    <label className="FormField__Label" htmlFor="ClientName">Client Name</label>
+                                    <label for="entryClientName">Client Name</label>
                                     <input
                                         type="text"
-                                        id="ClientName"
-                                        className="FormField__Input"
-                                        placeholder="Client Name"
+                                        id="entryClientName"
+                                        className="form-control"
+                                        placeholder="Enter client Name"
                                         name="entryClientName"
                                         value={this.state.entryClientName}
                                         onChange={this.handleChange}
                                     />
                                 </div>
                                 <div className="FormField">
-                                    <label className="FormField__Label" htmlFor="ClientContact">Client Contact</label>
+                                    <label for="entryClientContact">Client Contact</label>
                                     <input
                                         type="text"
-                                        id="ClientContact"
-                                        className="FormField__Input"
-                                        placeholder="Client Contact"
+                                        id="entryClientContact"
+                                        className="form-control"
+                                        placeholder="Enter name of client contact"
                                         name="entryClientContact"
                                         value={this.state.entryClientContact}
                                         onChange={this.handleChange}
                                     />
                                 </div>
                                 <div className="FormField">
-                                    <label className="FormField__Label" htmlFor="Clientname">Contact Email</label>
+                                    <label for="entryContactEmail">Contact Email</label>
                                     <input
                                         type="email"
-                                        id="Contactemail"
-                                        className="FormField__Input"
-                                        placeholder="Contact Email"
+                                        id="entryContactEmail"
+                                        className="form-control"
+                                        placeholder="Enter email of client contact"
                                         name="entryContactEmail"
                                         value={this.state.entryContactEmail}
                                         onChange={this.handleChange}
                                     />
                                 </div>
                                 <div className="FormField">
-                                    <label className="FormField__Label" htmlFor="Clientservices">Client Services</label>
+                                    <label for="entryClientServices">Client Services</label>
                                     <input
                                         type="text"
-                                        id="Clientservices"
-                                        className="FormField__Input"
-                                        placeholder="Client Services"
+                                        id="entryClientServices"
+                                        className="form-control"
+                                        placeholder="Enter services that will be provided to client"
                                         name="entryClientServices"
                                         value={this.state.entryClientServices}
                                         onChange={this.handleChange}
@@ -113,7 +110,7 @@ class Client extends Component {
                                 className="btn projectSubmit"
                                 onClick={this.handleSubmit}
                             >
-                                <h4>Submit </h4>
+                                Submit{" "}
                             </button >
                             <button className="btn projectCancel">
                                 Cancel{" "}

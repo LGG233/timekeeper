@@ -42,29 +42,38 @@ class allProjects extends Component {
     render() {
         return (
             <div>
-                <h1>Client Projects</h1>
-                {this.state.data.map(project => (
-                    <div className="container-fluid card-space">
-                        <div className="card">
-                            <div className="card-header"><h3>{project.client_name}: {project.project_name}</h3></div>
-                            <div className="card-body">
-                                <span>{project.project_description}</span>
-                                <br></br>
-                                <span>Billing Unit: {project.billing_unit}</span>
-                                <br></br>
-                                <span>Billing Rate: {project.billing_rate}</span>
-                                <br></br>
-                                <span>Project ID: {project.id}</span>
-                                <br></br>
-                                <button className="btn btn-primary card-btn">Edit</button>
-                                <button className="btn btn-primary card-btn">Delete</button>
-                                <button className="btn btn-primary card-btn">Enter Time</button>
-                                <button className="btn btn-primary card-btn">View Time</button>
-                            </div>
-                        </div>
-                    </div>
-                ))}
-
+                <h4>Client Projects</h4>
+                <table className="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Client</th>
+                            <th scope="col">Project</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Billing Type</th>
+                            <th scope="col">Billing Unit</th>
+                            <th scope="col">Billing Rate</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {this.state.data.map(project => (
+                            <tr>
+                                <th scope="row">{project.client_name}</th>
+                                <td>{project.project_name}</td>
+                                <td>{project.project_description}</td>
+                                <td>{project.billing_type}</td>
+                                <td>{project.billing_unit}</td>
+                                <td>{project.billing_rate}</td>
+                                <td>
+                                    <button className="btn btn-primary card-btn">Edit</button>
+                                    <button className="btn btn-primary card-btn">Delete</button>
+                                    <button className="btn btn-primary card-btn">Enter Time</button>
+                                    <button className="btn btn-primary card-btn">View Time</button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
             </div>
         );
     }

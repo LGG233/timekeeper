@@ -108,15 +108,15 @@ class Entry extends Component {
                         value={this.state.entryDesc}
                         onChange={this.handleChange} />
                 </div>
-                {/* <div className="form-check">
+                <div className="form-check">
                     <input className="form-check-input" type="radio" name="billed" id="billed" value="option1" unchecked></input>
                     <label className="form-check-label" for="exampleRadios1">
                         Billed?</label>
-                </div> */}
-                <button className="btn entryCancel">
+                </div>
+                <button className="btn btn-primary entryCancel">
                     Cancel{" "}
                 </button>
-                <button className="btn entrySubmit">
+                <button className="btn btn-primary entrySubmit">
                     Submit{" "}
                 </button>
             </form>

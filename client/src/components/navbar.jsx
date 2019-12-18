@@ -6,7 +6,7 @@ const NavBar = props => {
     return (
         <nav className="navbar navbar-light bg-light">
             <a className="navbar-brand" href='/'>
-                Timekeeper{" "}
+                <h3>Timekeeper{" "}</h3>
             </a>
             <div>
                 <button className="btn displayData"
@@ -14,7 +14,7 @@ const NavBar = props => {
                         window.location.replace("/clientTable");
                     }}
                 >
-                    View clients{" "}
+                    Clients{" "}
                 </button>
                 <button className="btn newClient"
                     onClick={function () {
@@ -23,19 +23,12 @@ const NavBar = props => {
                 >
                     New client{" "}
                 </button>
-                {/* <button className="btn displayData"
-                    onClick={function () {
-                        window.location.replace("/timeTable");
-                    }}
-                >
-                    View time entries{" "}
-                </button> */}
                 <button className="btn displayData"
                     onClick={function () {
                         window.location.replace("/viewAllProjects");
                     }}
                 >
-                    View all projects{" "}
+                    Projects{" "}
                 </button>
             </div >
         </nav>);

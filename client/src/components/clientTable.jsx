@@ -51,31 +51,49 @@ class clientTable extends Component {
     }
 
     handleClientDelete = (id) => {
-        localStorage.setItem("client_id", id);
-        API.deleteClient(id).then(res => {
-            console.log("API request sent");
-        })
-        window.location.replace("/clientTable");
+        var result = window.confirm("Are you sure you want to delete this client?")
+        if (result) {
+            localStorage.setItem("client_id", id);
+            API.deleteClient(id).then(res => {
+                console.log("API request sent");
+            })
+            window.location.replace("/clientTable");
+        }
+    }
+
+    viewTime = (name) => {
+        localStorage.setItem("client_name", name);
+        window.location.replace("/timeTable");
     }
 
 
     render() {
         return (
             <div>
-                <h1>Clients</h1>
-                {this.state.data.map(client => (
-                    <div className="container-fluid">
-                        <div className="row">
-                            <span id="client-list"><ul><li><h5>{client.client_name}</h5></li></ul></span>
-                            <button className="btn btn-outline-secondary btn-sm card-btn" onClick={() => this.viewClientDetail(client.id, client.client_name)}>View Detail</button>
-                            <button className="btn btn-outline-secondary btn-sm card-btn" onClick={() => this.viewClientProjects(client.id, client.client_name)}>View Projects</button>
-                            <button className="btn btn-outline-secondary btn-sm card-btn" onClick={() => this.addNewProject(client.id, client.client_name)}>New Project</button>
-                            <button className="btn btn-outline-secondary btn-sm card-btn">View Time</button>
-                            <button className="btn btn-outline-secondary btn-sm card-btn" onClick={() => this.editClient(client.id, client.client_name)}>Edit Client</button>
-                            <button className="btn btn-outline-secondary btn-sm card-btn" onClick={() => this.handleClientDelete(client.id)}>Delete Client</button>
-                        </div>
-                    </div>
-                ))}
+                <h4>Clients</h4>
+                <table className="table">
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {this.state.data.map(client => (
+                            <tr>
+                                <th scope="row">{client.client_name}</th>
+                                <td>
+                                    <button className="btn btn-primary btn-sm card-btn" onClick={() => this.viewClientDetail(client.id, client.client_name)}>View Detail</button>
+                                    <button className="btn btn-primary btn-sm card-btn" onClick={() => this.viewClientProjects(client.id, client.client_name)}>View Projects</button>
+                                    <button className="btn btn-primary btn-sm card-btn" onClick={() => this.addNewProject(client.id, client.client_name)}>New Project</button>
+                                    <button className="btn btn-primary btn-sm card-btn" onClick={() => this.viewTime(client.client_name)}>View Time</button>
+                                    <button className="btn btn-primary btn-sm card-btn" onClick={() => this.editClient(client.id, client.client_name)}>Edit Client</button>
+                                    <button className="btn btn-primary btn-sm card-btn" onClick={() => this.handleClientDelete(client.id)}>Delete Client</button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
             </div>
         );
     }

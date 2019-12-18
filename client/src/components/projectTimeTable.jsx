@@ -50,31 +50,43 @@ class projectTimeTable extends Component {
         window.location.replace("/Project");
     }
 
+    enterTimeClick = (id, name, project) => {
+        localStorage.setItem("project_id", id);
+        localStorage.setItem("client_name", name);
+        localStorage.setItem("project_name", project);
+        window.location.replace("/Entry");
+    }
 
     render() {
         return (
             <div>
-                <h1>Time Entries for {localStorage.getItem("client_name")} on {localStorage.getItem("project_name")}</h1>
-                {this.state.data.map(time => (
-                    <div className="container card-space">
-                        <div className="card">
-                            {/* <div className="card-header"><h3>{time.project_name}</h3></div> */}
-                            <div className="card-body">
-                                <span>{moment.utc(time.date_of_service).format("ll")}</span>
-                                <br></br>
-                                <span>{time.hours} hours</span>
-                                <br></br>
-                                <span>{time.desc_of_work}</span>
-                                <br></br>
-                                <span>Entry ID: {time.id}</span>
-                                <br></br>
-                                <button className="btn btn-primary card-btn">Edit</button>
-                                <button className="btn btn-primary card-btn" onClick={() => this.handleDeleteClick(time.id)}>Delete</button>
-                            </div>
-                        </div>
-                    </div>
-                ))}
-
+                <h4>Time entries for {localStorage.getItem("client_name")} on {localStorage.getItem("project_name")} project</h4>
+                <table className="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Date</th>
+                            <th scope="col">Hours</th>
+                            <th scope="col">Work Performed</th>
+                            <th scope="col">Billed?</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {this.state.data.map(time => (
+                            <tr>
+                                <th scope="row">{moment.utc(time.date_of_service).format("ll")}</th>
+                                <td>{time.hours}</td>
+                                <td>{time.desc_of_work}</td>
+                                <td></td>
+                                <td>
+                                    <button className="btn btn-primary card-btn">Edit Entry</button>
+                                    <button className="btn btn-primary card-btn" onClick={() => this.handleDeleteClick(time.id)}>Delete Entry</button>
+                                    <button className="btn btn-primary card-btn" onClick={() => this.enterTimeClick(time.ProjectId, time.client_name, time.project_name)}>Enter Time on this Project</button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
             </div>
         );
     }
