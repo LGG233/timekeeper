@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 var morgan = require("morgan");
 var bodyParser = require("body-parser");
 var cors = require("cors");
+require('dotenv').config()
 
 // Sets up the Express App
 var app = express();
