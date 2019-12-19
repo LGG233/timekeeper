@@ -62,13 +62,13 @@ class projectDetail extends Component {
     render() {
         return (
             <div>
-                <h1>Project Detail</h1>
+                <h4>Project Detail</h4>
                 {this.state.data.map(project => (
                     <div className="container-fluid">
                         <div className="card">
-                            <div className="card-header"><h3>{project.client_name}</h3></div>
+                            <div className="card-header"><h4>Client: {project.client_name}</h4></div>
                             <div className="card-body">
-                                <span>Name: {project.project_name} </span>
+                                <span>Project: {project.project_name} </span>
                                 <br></br>
                                 <span>Description: {project.project_description}</span>
                                 <br></br>
