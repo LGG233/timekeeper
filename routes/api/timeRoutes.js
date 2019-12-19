@@ -3,7 +3,11 @@ var db = require("../../models");
 module.exports = function (app) {
     // get all time entries
     app.get("/time", function (req, res) {
-        db.timeEntry.findAll().then(function (dbTime) {
+        db.timeEntry.findAll({
+            order: [
+                ['date_of_service', 'DESC']
+            ]
+        }).then(function (dbTime) {
             res.json(dbTime);
         });
     });
@@ -25,6 +29,9 @@ module.exports = function (app) {
             where: {
                 client_name: req.params.id
             },
+            order: [
+                ['date_of_service', 'DESC']
+            ]
         }).then(function (dbTime) {
             res.json(dbTime);
         });
@@ -36,6 +43,9 @@ module.exports = function (app) {
             where: {
                 ProjectId: req.params.id
             },
+            order: [
+                ['date_of_service', 'DESC']
+            ]
         }).then(function (dbTime) {
             res.json(dbTime);
         });

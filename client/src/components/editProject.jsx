@@ -69,7 +69,7 @@ class editProject extends Component {
     };
 
     handleCancel = event => {
-        window.location.replace("/clientTable")
+        window.location.replace("/projectTable")
     };
 
 
@@ -144,13 +144,13 @@ class editProject extends Component {
                             </form>
                             <br></br>
                             <button
-                                className="btn btn-primary projectSubmit"
+                                className="btn btn-sm btn-primary projectSubmit"
                                 onClick={this.handleSubmit}
                             >
                                 Submit{" "}
                             </button >
                             <button
-                                className="btn btn-primary projectCancel"
+                                className="btn btn-sm btn-primary projectCancel"
                                 onClick={this.handleCancel}>
                                 Cancel{" "}
                             </button>

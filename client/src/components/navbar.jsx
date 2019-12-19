@@ -9,21 +9,21 @@ const NavBar = props => {
                 <h3>Timekeeper{" "}</h3>
             </a>
             <div>
-                <button className="btn displayData"
+                <button className="btn btn-sm displayData"
                     onClick={function () {
                         window.location.replace("/clientTable");
                     }}
                 >
                     Clients{" "}
                 </button>
-                <button className="btn newClient"
+                <button className="btn btn-sm newClient"
                     onClick={function () {
                         window.location.replace("/Client");
                     }}
                 >
                     New client{" "}
                 </button>
-                <button className="btn displayData"
+                <button className="btn btn-sm displayData"
                     onClick={function () {
                         window.location.replace("/viewAllProjects");
                     }}

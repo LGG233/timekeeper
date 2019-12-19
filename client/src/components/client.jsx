@@ -49,6 +49,11 @@ class Client extends Component {
             .catch(err => console.log(err))
     };
 
+    handleCancel = event => {
+        window.location.replace("/clientTable")
+    };
+
+
     render() {
         return (
             <div className="container-fluid">
@@ -106,13 +111,17 @@ class Client extends Component {
                                     />
                                 </div>
                             </form>
+                            <br></br>
                             <button
-                                className="btn projectSubmit"
+                                className="btn btn-sm btn-primary projectSubmit"
                                 onClick={this.handleSubmit}
                             >
                                 Submit{" "}
                             </button >
-                            <button className="btn projectCancel">
+                            <button
+                                className="btn btn-sm btn-primary projectCancel"
+                                onClick={this.handleCancel}
+                            >
                                 Cancel{" "}
                             </button>
                         </div>

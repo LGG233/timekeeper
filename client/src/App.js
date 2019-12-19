@@ -16,6 +16,7 @@ import allProjects from './components/viewAllProjects';
 import editClient from './components/editClient';
 import editProject from './components/editProject';
 import projectDetail from './components/projectDetail';
+import editEntry from './components/editTimeEntry';
 
 class App extends Component {
   state = {};
@@ -41,6 +42,7 @@ class App extends Component {
                 <Route exact path="/projectTimeTable" component={projectTimeTable} />
                 <Route exact path="/clientTable" component={clientTable} />
                 <Route exact path="/Project" component={Project} />
+                <Route exact path="/editTimeEntry" component={editEntry} />
                 <Route exact path="/Client" component={Client} />
               </Switch>
             </div>

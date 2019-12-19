@@ -133,10 +133,10 @@ class Project extends Component {
                         />
                     </div>
                 </div>
-                <button className="btn projectCancel">
+                <button className="btn btn-sm projectCancel">
                     Cancel{" "}
                 </button>
-                <button className="btn projectSubmit"
+                <button className="btn btn-sm projectSubmit"
                     onClick={this.handleSubmit}
                 >
                     Submit{" "}

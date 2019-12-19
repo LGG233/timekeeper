@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import API from "../util/API";
+import moment from 'moment';
 
-class editEntry extends Component {
+class Entry extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -14,6 +15,18 @@ class editEntry extends Component {
             data: []
         }
     }
+
+    componentDidMount() {
+        console.log("component did mount");
+        let id = localStorage.getItem("entry_id");
+        API.getTimeEntry(id).then(res => {
+            console.log("Searching for entry ID: " + id)
+            this.setState({
+                data: res.data[0]
+            });
+        })
+    };
+
 
     handleInputChange = event => {
         const { name, value } = event.target;
@@ -32,25 +45,23 @@ class editEntry extends Component {
 
     handleSubmit = event => {
         event.preventDefault();
-        console.log(localStorage.getItem("client_name"));
-        console.log(this.state);
         let timeData = {
-            entryDate: this.state.entryDate,
+            entryTimeDOS: this.state.entryDate,
             entryProjectName: localStorage.getItem("project_name"),
-            entryTime: this.state.entryTime,
-            entryDesc: this.state.entryDesc,
+            entryHours: this.state.entryTime,
+            entryTimeDesc: this.state.entryDesc,
             entryClientName: localStorage.getItem("client_name"),
             ProjectId: localStorage.getItem("project_id")
         }
-        console.log(timeData);
-        this.addTimeEntry(timeData);
+        let id = localStorage.getItem("entry_id");
+        this.editEntry(id, timeData);
+        window.location.replace("/projectTimeTable");
     };
 
-    addTimeEntry = (data) => {
-        API.addTimeEntry(data)
+    editEntry = (id, data) => {
+        API.editEntry(id, data)
             .then(data => console.log(data))
             .catch(err => console.log(err))
-        window.location.replace("/projectTimeTable");
     };
 
     handleCancel = event => {
@@ -61,38 +72,39 @@ class editEntry extends Component {
         return (
             <div className="container-fluid">
                 <div className="row">
-                    <h4>New Time Entry for {localStorage.getItem("client_name")} on the {localStorage.getItem("project_name")} project</h4>
+                    <h4>Edit time entry for {localStorage.getItem("client_name")} on the {localStorage.getItem("project_name")} project</h4>
                     <div className="container">
                         <div className="FormCenter">
                             <form onSubmit={this.handleSubmit} className="FormField">
                                 <div className="FormField">
-                                    <label for="entryDate">Date of Service</label>
+                                    <label for="entryDate">Date of Service: {moment.utc(this.state.data.date_of_service).format("ll")}</label>
                                     <input
                                         type="date"
                                         className="form-control"
                                         id="entryDate"
                                         name="entryDate"
+                                        placeholder={moment.utc(this.state.data.date_of_service).format("ll")}
                                         value={this.state.entryDate}
                                         onChange={this.handleChange} />
                                 </div>
                                 <div className="form-group">
-                                    <label for="entryTime">Time Spent</label>
+                                    <label for="entryTime">Time Spent: {this.state.data.hours}</label>
                                     <input
                                         type="text"
                                         className="form-control"
                                         id="entryTime"
-                                        placeholder="Enter time"
+                                        placeholder={this.state.data.hours}
                                         name="entryTime"
                                         value={this.state.entryTime}
                                         onChange={this.handleChange} />
                                 </div>
                                 <div className="form-group">
-                                    <label for="entryDesc">Work Description</label>
+                                    <label for="entryDesc">Work Description: {this.state.data.desc_of_work}</label>
                                     <input
                                         type="text"
                                         className="form-control"
                                         id="entryDesc"
-                                        placeholder="Describe Services"
+                                        placeholder={this.state.data.desc_of_work}
                                         name="entryDesc"
                                         value={this.state.entryDesc}
                                         onChange={this.handleChange} />
@@ -124,5 +136,5 @@ class editEntry extends Component {
     }
 }
 
-export default editEntry;
+export default Entry;
 

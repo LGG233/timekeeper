@@ -21,7 +21,7 @@ class projectDetail extends Component {
             billing_unit: "",
             data: []
         }
-    }
+    };
 
     componentDidMount() {
         console.log("component did mount");
@@ -32,19 +32,12 @@ class projectDetail extends Component {
                 data: res.data
             })
         })
-
-    }
-    // Modify this function to 'viewClientTime'
-    // viewClientProjects = (id, name) => {
-    //     localStorage.setItem("client_id", id);
-    //     localStorage.setItem("client_name", name);
-    //     window.location.replace("/projectTable");
-    // }
+    };
 
     editProject = (id) => {
         localStorage.setItem("project_id", id);
         window.location.replace("/editProject");
-    }
+    };
 
     handleProjectDelete = (id) => {
         localStorage.setItem("project_id", id);
@@ -52,8 +45,19 @@ class projectDetail extends Component {
             console.log("API request sent");
         })
         window.location.replace("/projectTable");
-    }
+    };
 
+    viewTime = (id) => {
+        localStorage.setItem("project_id", id);
+        window.location.replace("/timeTable");
+    };
+
+    enterTimeClick = (id, name, project) => {
+        localStorage.setItem("project_id", id);
+        localStorage.setItem("client_name", name);
+        localStorage.setItem("project_name", project);
+        window.location.replace("/Entry");
+    };
 
     render() {
         return (
@@ -74,12 +78,10 @@ class projectDetail extends Component {
                                 <br></br>
                                 <span>Billing Unit: {project.billing_unit}</span>
                                 <br></br>
-                                <button className="btn btn-primary card-btn">View Time</button>
-                                <button className="btn btn-primary card-btn">Enter Time</button>
-                                {/* <button className="btn btn-primary card-btn" onClick={() => this.viewClientProjects(client.id, client.client_name)}>View Projects</button> */}
-                                {/* <button className="btn btn-primary card-btn" onClick={() => this.addNewProject(client.id, client.client_name)}>New Project</button> */}
-                                <button className="btn btn-primary card-btn" onClick={() => this.editProject(project.id)}>Edit Project</button>
-                                <button className="btn btn-primary card-btn" onClick={() => this.handleProjectDelete(project.id)}>Delete Project</button>
+                                <button className="btn btn-sm btn-primary card-btn" onClick={() => this.viewTime(project.id)}>View Time</button>
+                                <button className="btn btn-sm btn-primary card-btn" onClick={() => this.enterTimeClick(project.id, project.client_name, project.project_name)}>Enter Time</button>
+                                <button className="btn btn-sm btn-primary card-btn" onClick={() => this.editProject(project.id)}>Edit Project</button>
+                                <button className="btn btn-sm btn-primary card-btn" onClick={() => this.handleProjectDelete(project.id)}>Delete Project</button>
                             </div>
                         </div>
                     </div>

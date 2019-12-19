@@ -39,6 +39,41 @@ class allProjects extends Component {
         })
     };
 
+    viewTime = (name, project, id) => {
+        localStorage.setItem("client_name", name);
+        localStorage.setItem("project_name", project);
+        localStorage.setItem("project_id", id);
+        window.location.replace("/projectTimeTable");
+    };
+
+    enterTimeClick = (id, name, project) => {
+        localStorage.setItem("project_id", id);
+        localStorage.setItem("client_name", name);
+        localStorage.setItem("project_name", project);
+        window.location.replace("/Entry");
+    };
+
+    editProject = (id) => {
+        localStorage.setItem("project_id", id);
+        window.location.replace("/editProject");
+    };
+
+    viewProjectDetail = (id) => {
+        localStorage.setItem("project_id", id);
+        window.location.replace("/projectDetail");
+    };
+
+    handleProjectDelete = (id) => {
+        var result = window.confirm("Are you sure you want to delete this project?")
+        if (result) {
+            localStorage.setItem("project_id", id);
+            API.deleteProject(id).then(res => {
+                console.log("API request sent");
+            })
+            window.location.replace("/projectTable");
+        }
+    };
+
     render() {
         return (
             <div>
@@ -65,10 +100,11 @@ class allProjects extends Component {
                                 <td>{project.billing_unit}</td>
                                 <td>{project.billing_rate}</td>
                                 <td>
-                                    <button className="btn btn-primary card-btn">Edit</button>
-                                    <button className="btn btn-primary card-btn">Delete</button>
-                                    <button className="btn btn-primary card-btn">Enter Time</button>
-                                    <button className="btn btn-primary card-btn">View Time</button>
+                                    <button className="btn btn-sm btn-primary card-btn" onClick={() => this.viewProjectDetail(project.id)}>View Detail</button>
+                                    <button className="btn btn-sm btn-primary card-btn" onClick={() => this.editProject(project.id)}>Edit Project</button>
+                                    <button className="btn btn-sm btn-primary card-btn" onClick={() => this.handleProjectDelete(project.id)}>Delete Project</button>
+                                    <button className="btn btn-sm btn-primary card-btn" onClick={() => this.enterTimeClick(project.id, project.client_name, project.project_name)}>Enter Time</button>
+                                    <button className="btn btn-sm btn-primary card-btn" onClick={() => this.viewTime(project.client_name, project.project_name, project.id)}>View Time</button>
                                 </td>
                             </tr>
                         ))}

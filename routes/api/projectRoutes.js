@@ -3,7 +3,11 @@ var db = require("../../models");
 module.exports = function (app) {
     // get all projects
     app.get("/projects", function (req, res) {
-        db.Project.findAll().then(function (dbProject) {
+        db.Project.findAll({
+            order: [
+                ['client_name', 'ASC']
+            ]
+        }).then(function (dbProject) {
             res.json(dbProject);
         });
     });

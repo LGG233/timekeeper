@@ -3,7 +3,11 @@ var db = require("../../models");
 module.exports = function (app) {
     // get all clients 
     app.get("/clients", function (req, res) {
-        db.Client.findAll().then(function (dbClient) {
+        db.Client.findAll({
+            order: [
+                ['client_name', 'ASC']
+            ]
+        }).then(function (dbClient) {
             res.json(dbClient);
         });
     });

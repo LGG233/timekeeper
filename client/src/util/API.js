@@ -73,5 +73,9 @@ export default {
 
     editProject: function (id, data) {
         return axios.put(`/project/${id}`, data)
+    },
+
+    editEntry: function (id, data) {
+        return axios.put(`/time/${id}`, data)
     }
 }

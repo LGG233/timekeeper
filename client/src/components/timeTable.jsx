@@ -16,6 +16,7 @@ class timeTable extends Component {
             date_of_service: "",
             hours: "",
             desc_of_work: "",
+            ProjectId: "",
             data: []
         }
     }
@@ -45,12 +46,24 @@ class timeTable extends Component {
         window.location.replace("/timeTable", this.props)
     }
 
+    editTime = (id, name, id2) => {
+        localStorage.setItem("entry_id", id);
+        localStorage.setItem("project_name", name);
+        localStorage.setItem("project_id", id2)
+        window.location.replace("/editTimeEntry");
+    }
+
     addNewProject = (id, name) => {
         localStorage.setItem("client_id", id);
         localStorage.setItem("client_name", name);
         window.location.replace("/Project");
-    }
+    };
 
+    // editTime = (id, name) => {
+    //     localStorage.setItem("entry_id", id);
+    //     localStorage.setItem("project_name", name)
+    //     window.location.replace("/editTimeEntry");
+    // };
 
     render() {
         return (
@@ -76,8 +89,8 @@ class timeTable extends Component {
                                 <td>{time.desc_of_work}</td>
                                 <td></td>
                                 <td>
-                                    <button className="btn btn-primary card-btn">Edit</button>
-                                    <button className="btn btn-primary card-btn" onClick={() => this.handleDeleteClick(time.entry_id)}>Delete</button>
+                                    <button className="btn btn-sm btn-primary card-btn" onClick={() => this.editTime(time.id, time.project_name, time.ProjectId)}>Edit Entry</button>
+                                    <button className="btn btn-sm btn-primary card-btn" onClick={() => this.handleDeleteClick(time.id)}>Delete</button>
                                 </td>
                             </tr>
                         ))}

@@ -6,8 +6,6 @@ import "./table.css";
 // Pseudocode
 // 3) button attached to row for editing that calls up modal 
 
-// 4) button attached to row for deleting client and all associated project and time entries 
-
 class clientTable extends Component {
     constructor(props) {
         super(props);
@@ -19,7 +17,7 @@ class clientTable extends Component {
             client_services: "",
             data: []
         }
-    }
+    };
 
     componentDidMount() {
         console.log("component did mount");
@@ -30,25 +28,25 @@ class clientTable extends Component {
             })
         })
 
-    }
+    };
 
     viewClientProjects = (id, name) => {
         localStorage.setItem("client_id", id);
         localStorage.setItem("client_name", name);
         window.location.replace("/projectTable");
-    }
+    };
 
     viewClientDetail = (id, name) => {
         localStorage.setItem("client_id", id);
         localStorage.setItem("client_name", name);
         window.location.replace("/clientDetail");
-    }
+    };
 
     editClient = (id, name) => {
         localStorage.setItem("client_id", id);
         localStorage.setItem("client_name", name);
         window.location.replace("/editClient");
-    }
+    };
 
     handleClientDelete = (id) => {
         var result = window.confirm("Are you sure you want to delete this client?")
@@ -59,13 +57,18 @@ class clientTable extends Component {
             })
             window.location.replace("/clientTable");
         }
-    }
+    };
+
+    addNewProject = (id, name) => {
+        localStorage.setItem("client_id", id);
+        localStorage.setItem("client_name", name);
+        window.location.replace("/Project");
+    };
 
     viewTime = (name) => {
         localStorage.setItem("client_name", name);
         window.location.replace("/timeTable");
-    }
-
+    };
 
     render() {
         return (

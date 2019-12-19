@@ -52,7 +52,10 @@ class clientDetail extends Component {
         })
         window.location.replace("/clientTable");
     }
-
+    viewTime = (name) => {
+        localStorage.setItem("client_name", name);
+        window.location.replace("/timeTable");
+    };
 
     render() {
         return (
@@ -69,11 +72,11 @@ class clientDetail extends Component {
                                 <br></br>
                                 <span>Client ID: {client.id}</span>
                                 <br></br>
-                                <button className="btn btn-primary card-btn">View Time</button>
-                                <button className="btn btn-primary card-btn" onClick={() => this.viewClientProjects(client.id, client.client_name)}>View Projects</button>
-                                <button className="btn btn-primary card-btn" onClick={() => this.addNewProject(client.id, client.client_name)}>New Project</button>
-                                <button className="btn btn-primary card-btn" onClick={() => this.editClient(client.id, client.client_name)}>Edit Client</button>
-                                <button className="btn btn-primary card-btn" onClick={() => this.handleClientDelete(client.id)}>Delete Client</button>
+                                <button className="btn btn-primary btn-sm card-btn" onClick={() => this.viewTime(client.client_name)}>View Time</button>
+                                <button className="btn btn-sm btn-primary card-btn" onClick={() => this.viewClientProjects(client.id, client.client_name)}>View Projects</button>
+                                <button className="btn btn-sm btn-primary card-btn" onClick={() => this.addNewProject(client.id, client.client_name)}>New Project</button>
+                                <button className="btn btn-sm btn-primary card-btn" onClick={() => this.editClient(client.id, client.client_name)}>Edit Client</button>
+                                <button className="btn btn-sm btn-primary card-btn" onClick={() => this.handleClientDelete(client.id)}>Delete Client</button>
                             </div>
                         </div>
                     </div>
