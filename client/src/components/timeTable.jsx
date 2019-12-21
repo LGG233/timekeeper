@@ -76,7 +76,7 @@ class timeTable extends Component {
                             <th scope="col">Date</th>
                             <th scope="col">Time</th>
                             <th scope="col">Work performed</th>
-                            <th scope="col">Billed?</th>
+                            {/* <th scope="col">Billed?</th> */}
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
@@ -87,7 +87,7 @@ class timeTable extends Component {
                                 <td>{moment.utc(time.date_of_service).format("ll")}</td>
                                 <td>{time.hours}</td>
                                 <td>{time.desc_of_work}</td>
-                                <td></td>
+                                {/* <td></td> */}
                                 <td>
                                     <button className="btn btn-sm btn-primary card-btn" onClick={() => this.editTime(time.id, time.project_name, time.ProjectId)}>Edit Entry</button>
                                     <button className="btn btn-sm btn-primary card-btn" onClick={() => this.handleDeleteClick(time.id)}>Delete</button>

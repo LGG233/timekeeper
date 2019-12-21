@@ -53,9 +53,9 @@ class projectTimeTable extends Component {
     };
 
     enterTimeClick = (id, name, project) => {
-        localStorage.setItem("project_id", id);
-        localStorage.setItem("client_name", name);
-        localStorage.setItem("project_name", project);
+        localStorage.setItem(this.state.data.ProjectId, id);
+        localStorage.setItem(this.state.data.client_name, name);
+        localStorage.setItem(this.state.data.project_name, project);
         window.location.replace("/Entry");
     };
 
@@ -68,13 +68,14 @@ class projectTimeTable extends Component {
         return (
             <div>
                 <h4>Time entries for {localStorage.getItem("client_name")} on {localStorage.getItem("project_name")} project</h4>
+                <button className="btn btn-sm btn-primary card-btn" onClick={() => this.enterTimeClick(this.state.data.ProjectId, this.state.data.client_name, this.state.data.project_name)}>Enter Time on this Project</button>
                 <table className="table">
                     <thead>
                         <tr>
                             <th scope="col">Date</th>
                             <th scope="col">Hours</th>
                             <th scope="col">Work Performed</th>
-                            <th scope="col">Billed?</th>
+                            {/* <th scope="col">Billed?</th> */}
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
@@ -84,11 +85,11 @@ class projectTimeTable extends Component {
                                 <th scope="row">{moment.utc(time.date_of_service).format("ll")}</th>
                                 <td>{time.hours}</td>
                                 <td>{time.desc_of_work}</td>
-                                <td></td>
+                                {/* <td></td> */}
                                 <td>
                                     <button className="btn btn-sm btn-primary card-btn" onClick={() => this.editTime(time.id)}>Edit Entry</button>
                                     <button className="btn btn-sm btn-primary card-btn" onClick={() => this.handleDeleteClick(time.id)}>Delete Entry</button>
-                                    <button className="btn btn-sm btn-primary card-btn" onClick={() => this.enterTimeClick(time.ProjectId, time.client_name, time.project_name)}>Enter Time on this Project</button>
+                                    {/* <button className="btn btn-sm btn-primary card-btn" onClick={() => this.enterTimeClick(time.ProjectId, time.client_name, time.project_name)}>Enter Time on this Project</button> */}
                                 </td>
                             </tr>
                         ))}

@@ -98,7 +98,7 @@ class allProjects extends Component {
                                 <td>{project.project_description}</td>
                                 <td>{project.billing_type}</td>
                                 <td>{project.billing_unit}</td>
-                                <td>{project.billing_rate}</td>
+                                <td>${project.billing_rate}</td>
                                 <td>
                                     <button className="btn btn-sm btn-primary card-btn" onClick={() => this.viewProjectDetail(project.id)}>View Detail</button>
                                     <button className="btn btn-sm btn-primary card-btn" onClick={() => this.editProject(project.id)}>Edit Project</button>
