@@ -34,6 +34,7 @@ class editEntry extends Component {
         event.preventDefault();
         console.log(localStorage.getItem("client_name"));
         console.log(this.state);
+        console.log("New time entry posted");
         let timeData = {
             entryDate: this.state.entryDate,
             entryProjectName: localStorage.getItem("project_name"),
@@ -46,15 +47,15 @@ class editEntry extends Component {
         this.addTimeEntry(timeData);
     };
 
-    addTimeEntry = (data) => {
-        API.addTimeEntry(data)
+    addTimeEntry = (data, response) => {
+        API.addTimeEntry(data, response)
             .then(data => console.log(data))
             .catch(err => console.log(err))
-        window.location.replace("/projectTimeTable");
+        window.location.replace("/projectTimeTable")
     };
 
     handleCancel = event => {
-        window.location.replace("/timeTable")
+        window.location.replace("/projectTimeTable")
     };
 
     render() {
@@ -114,6 +115,12 @@ class editEntry extends Component {
                                     onClick={this.handleCancel}
                                 >
                                     Cancel{" "}
+                                </button>
+                                <button
+                                    className="btn btn-sm btn-primary entryView"
+                                    onClick={this.handleCancel}
+                                >
+                                    View Project Time{" "}
                                 </button>
                             </form>
                         </div>

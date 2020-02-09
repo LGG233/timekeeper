@@ -56,6 +56,10 @@ class Project extends Component {
         window.location.replace("/projectTable");
     };
 
+    handleCancel = event => {
+        window.location.replace("/projectTimeTable")
+    };
+
     render() {
         return (
             <form onSubmit={this.handleSubmit} className="FormField">
@@ -133,7 +137,9 @@ class Project extends Component {
                         />
                     </div>
                 </div>
-                <button className="btn btn-sm projectCancel">
+                <button className="btn btn-sm projectCancel"
+                    onClick={this.handleCancel}
+                >
                     Cancel{" "}
                 </button>
                 <button className="btn btn-sm projectSubmit"

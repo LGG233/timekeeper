@@ -57,6 +57,12 @@ class clientDetail extends Component {
         window.location.replace("/timeTable");
     };
 
+    addNewProject = (id, name) => {
+        localStorage.setItem("client_id", id);
+        localStorage.setItem("client_name", name);
+        window.location.replace("/Project");
+    };
+
     render() {
         return (
             <div>

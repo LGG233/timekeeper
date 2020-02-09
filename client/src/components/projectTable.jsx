@@ -21,7 +21,8 @@ class projectTable extends Component {
 
     componentDidMount() {
         console.log("component did mount");
-        API.getClientProjects(localStorage.getItem("client_name")).then(res => {
+        let client = localStorage.getItem("client_name");
+        API.getClientProjects(client).then(res => {
             console.log(res);
             this.setState({
                 data: res.data
