@@ -78,15 +78,15 @@ class allProjects extends Component {
         return (
             <div>
                 <h4>Client Projects</h4>
-                <table className="table">
+                <table className="table-sm table-striped">
                     <thead>
                         <tr>
                             <th scope="col">Client</th>
                             <th scope="col">Project</th>
                             <th scope="col">Description</th>
-                            <th scope="col">Billing Type</th>
+                            {/* <th scope="col">Billing Type</th>
                             <th scope="col">Billing Unit</th>
-                            <th scope="col">Billing Rate</th>
+                            <th scope="col">Billing Rate</th> */}
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
@@ -96,15 +96,15 @@ class allProjects extends Component {
                                 <th scope="row">{project.client_name}</th>
                                 <td>{project.project_name}</td>
                                 <td>{project.project_description}</td>
-                                <td>{project.billing_type}</td>
+                                {/* <td>{project.billing_type}</td>
                                 <td>{project.billing_unit}</td>
-                                <td>${project.billing_rate}</td>
+                                <td>${project.billing_rate}</td> */}
                                 <td>
-                                    <button className="btn btn-sm btn-primary card-btn" onClick={() => this.viewProjectDetail(project.id)}>View Detail</button>
-                                    <button className="btn btn-sm btn-primary card-btn" onClick={() => this.editProject(project.id)}>Edit Project</button>
-                                    <button className="btn btn-sm btn-primary card-btn" onClick={() => this.handleProjectDelete(project.id)}>Delete Project</button>
-                                    <button className="btn btn-sm btn-primary card-btn" onClick={() => this.enterTimeClick(project.id, project.client_name, project.project_name)}>Enter Time</button>
-                                    <button className="btn btn-sm btn-primary card-btn" onClick={() => this.viewTime(project.client_name, project.project_name, project.id)}>View Time</button>
+                                    <button className="btn btn-secondary btn-sm card-btn" onClick={() => this.viewProjectDetail(project.id)}>Detail</button>
+                                    <button className="btn btn-sm btn-secondary card-btn" onClick={() => this.editProject(project.id)}>Edit</button>
+                                    <button className="btn btn-sm btn-secondary card-btn" onClick={() => this.handleProjectDelete(project.id)}>Delete</button>
+                                    <button className="btn btn-sm btn-secondary card-btn" onClick={() => this.enterTimeClick(project.id, project.client_name, project.project_name)}>Enter Time</button>
+                                    <button className="btn btn-sm btn-secondary card-btn" onClick={() => this.viewTime(project.client_name, project.project_name, project.id)}>View Time</button>
                                 </td>
                             </tr>
                         ))}

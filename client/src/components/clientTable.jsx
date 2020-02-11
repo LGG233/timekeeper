@@ -74,7 +74,7 @@ class clientTable extends Component {
         return (
             <div>
                 <h4>Clients</h4>
-                <table className="table">
+                <table className="table table-striped">
                     <thead>
                         <tr>
                             <th scope="col"></th>
@@ -86,12 +86,12 @@ class clientTable extends Component {
                             <tr>
                                 <th scope="row">{client.client_name}</th>
                                 <td>
-                                    <button className="btn btn-primary btn-sm card-btn" onClick={() => this.viewClientDetail(client.id, client.client_name)}>View Detail</button>
-                                    <button className="btn btn-primary btn-sm card-btn" onClick={() => this.viewClientProjects(client.id, client.client_name)}>View Projects</button>
-                                    <button className="btn btn-primary btn-sm card-btn" onClick={() => this.addNewProject(client.id, client.client_name)}>New Project</button>
-                                    <button className="btn btn-primary btn-sm card-btn" onClick={() => this.viewTime(client.client_name)}>View Time</button>
-                                    <button className="btn btn-primary btn-sm card-btn" onClick={() => this.editClient(client.id, client.client_name)}>Edit Client</button>
-                                    <button className="btn btn-primary btn-sm card-btn" onClick={() => this.handleClientDelete(client.id)}>Delete Client</button>
+                                    <button className="btn btn-secondary btn-sm card-btn" onClick={() => this.viewClientDetail(client.id, client.client_name)}>Detail</button>
+                                    <button className="btn btn-secondary btn-sm card-btn" onClick={() => this.viewClientProjects(client.id, client.client_name)}>Projects</button>
+                                    <button className="btn btn-secondary btn-sm card-btn" onClick={() => this.addNewProject(client.id, client.client_name)}>New Project</button>
+                                    <button className="btn btn-secondary btn-sm card-btn" onClick={() => this.viewTime(client.client_name)}>Time</button>
+                                    <button className="btn btn-secondary btn-sm card-btn" onClick={() => this.editClient(client.id, client.client_name)}>Edit</button>
+                                    <button className="btn btn-secondary btn-sm card-btn" onClick={() => this.handleClientDelete(client.id)}>Delete</button>
                                 </td>
                             </tr>
                         ))}
