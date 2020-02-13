@@ -68,8 +68,8 @@ class projectTimeTable extends Component {
         return (
             <div>
                 <h4>Time entries for {localStorage.getItem("client_name")} on {localStorage.getItem("project_name")} project</h4>
-                <button className="btn btn-sm btn-secondary card-btn" onClick={() => this.enterTimeClick(this.state.data.ProjectId, this.state.data.client_name, this.state.data.project_name)}>Enter Time on this Project</button>
-                <table className="table table-striped">
+                <button className="btn btn-sm btn-secondary card-btn" onClick={() => this.enterTimeClick(localStorage.getItem("id"), localStorage.getItem("name"), localStorage.getItem("project"))}>Enter Time on this Project</button>
+                <table className="table">
                     <thead>
                         <tr>
                             <th scope="col">Date</th>
@@ -89,7 +89,7 @@ class projectTimeTable extends Component {
                                 <td>
                                     <button className="btn btn-sm btn-secondary card-btn" onClick={() => this.editTime(time.id)}>Edit Entry</button>
                                     <button className="btn btn-sm btn-secondary card-btn" onClick={() => this.handleDeleteClick(time.id)}>Delete Entry</button>
-                                    {/* <button className="btn btn-sm btn-primary card-btn" onClick={() => this.enterTimeClick(time.ProjectId, time.client_name, time.project_name)}>Enter Time on this Project</button> */}
+                                    {/* <button className="btn btn-sm btn-secondary card-btn" onClick={() => this.enterTimeClick(time.ProjectId, time.client_name, time.project_name)}>Enter Time on this Project</button> */}
                                 </td>
                             </tr>
                         ))}

@@ -89,8 +89,8 @@ class timeTable extends Component {
                                 <td>{time.desc_of_work}</td>
                                 {/* <td></td> */}
                                 <td>
-                                    <button className="btn btn-sm btn-primary card-btn" onClick={() => this.editTime(time.id, time.project_name, time.ProjectId)}>Edit Entry</button>
-                                    <button className="btn btn-sm btn-primary card-btn" onClick={() => this.handleDeleteClick(time.id)}>Delete</button>
+                                    <button className="btn btn-sm btn-secondary card-btn" onClick={() => this.editTime(time.id, time.project_name, time.ProjectId)}>Edit Entry</button>
+                                    <button className="btn btn-sm btn-secondary card-btn" onClick={() => this.handleDeleteClick(time.id)}>Delete</button>
                                 </td>
                             </tr>
                         ))}

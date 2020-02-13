@@ -78,10 +78,10 @@ class projectDetail extends Component {
                                 <br></br>
                                 <span>Billing Unit: {project.billing_unit}</span>
                                 <br></br>
-                                <button className="btn btn-sm btn-primary card-btn" onClick={() => this.viewTime(project.id)}>View Time</button>
-                                <button className="btn btn-sm btn-primary card-btn" onClick={() => this.enterTimeClick(project.id, project.client_name, project.project_name)}>Enter Time</button>
-                                <button className="btn btn-sm btn-primary card-btn" onClick={() => this.editProject(project.id)}>Edit Project</button>
-                                <button className="btn btn-sm btn-primary card-btn" onClick={() => this.handleProjectDelete(project.id)}>Delete Project</button>
+                                <button className="btn btn-sm btn-secondary card-btn" onClick={() => this.viewTime(project.id)}>View Time</button>
+                                <button className="btn btn-sm btn-secondary card-btn" onClick={() => this.enterTimeClick(project.id, project.client_name, project.project_name)}>Enter Time</button>
+                                <button className="btn btn-sm btn-secondary card-btn" onClick={() => this.editProject(project.id)}>Edit Project</button>
+                                <button className="btn btn-sm btn-secondary card-btn" onClick={() => this.handleProjectDelete(project.id)}>Delete Project</button>
                             </div>
                         </div>
                     </div>
