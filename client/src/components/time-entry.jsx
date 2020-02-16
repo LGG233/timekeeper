@@ -105,19 +105,19 @@ class editEntry extends Component {
                                 </div> */}
                                 <br></br>
                                 <button
-                                    className="btn btn-sm btn-primary entrySubmit"
+                                    className="btn btn-sm btn-secondary entrySubmit"
                                     onClick={this.handleSubmit}
                                 >
                                     Submit{" "}
                                 </button>
                                 <button
-                                    className="btn btn-sm btn-primary entryCancel"
+                                    className="btn btn-sm btn-secondary entryCancel"
                                     onClick={this.handleCancel}
                                 >
                                     Cancel{" "}
                                 </button>
                                 <button
-                                    className="btn btn-sm btn-primary entryView"
+                                    className="btn btn-sm btn-secondary entryView"
                                     onClick={this.handleCancel}
                                 >
                                     View Project Time{" "}

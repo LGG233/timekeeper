@@ -51,7 +51,7 @@ module.exports = function (app) {
         });
     });
 
-    // create new client
+    // create new time entry
     app.post("/newtimeentry", function (req, res) {
         db.timeEntry.create({
             client_name: req.body.entryClientName,
