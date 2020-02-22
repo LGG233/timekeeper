@@ -65,6 +65,7 @@ class editProject extends Component {
     editProject = (id, data) => {
         API.editProject(id, data)
             .then(data => console.log(data))
+            .then(window.location.replace("/projectTable"))
             .catch(err => console.log(err))
     };
 

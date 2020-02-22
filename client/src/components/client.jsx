@@ -46,6 +46,7 @@ class Client extends Component {
     addNewClient = (data) => {
         API.addNewClient(data)
             .then(data => console.log(data))
+            .then(window.location.replace("/clientTable"))
             .catch(err => console.log(err))
     };
 

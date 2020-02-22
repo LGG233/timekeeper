@@ -52,8 +52,8 @@ class Project extends Component {
     addNewProject = (data) => {
         API.addNewProject(data)
             .then(data => console.log(data))
+            .then(window.location.replace("/projectTable"))
             .catch(err => console.log(err))
-        window.location.replace("/projectTable");
     };
 
     handleCancel = event => {

@@ -61,6 +61,7 @@ class Entry extends Component {
     editEntry = (id, data) => {
         API.editEntry(id, data)
             .then(data => console.log(data))
+            .then(window.location.replace("/projectTimeTable"))
             .catch(err => console.log(err))
     };
 

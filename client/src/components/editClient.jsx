@@ -62,6 +62,7 @@ class editClient extends Component {
     editClient = (id, data) => {
         API.editClient(id, data)
             .then(data => console.log(data))
+            .then(window.location.replace("/clientTable"))
             .catch(err => console.log(err))
     };
 
