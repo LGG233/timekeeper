@@ -4,6 +4,7 @@ import NavBar from './components/navbar';
 import './App.css';
 import projectTimeTable from './components/projectTimeTable';
 import timeTable from './components/timeTable';
+import timeByDateTable from './components/timeByDateTable';
 import projectTable from './components/projectTable';
 import clientTable from './components/clientTable';
 import Entry from './components/time-entry';
@@ -33,6 +34,7 @@ class App extends Component {
                 <Route exact path="/" component={Landing} />
                 <Route exact path="/Entry" component={Entry} />
                 <Route exact path="/timeTable" component={timeTable} />
+                <Route exact path="/timeByDateTable" component={timeByDateTable} />
                 <Route exact path="/viewAllProjects" component={allProjects} />
                 <Route exact path="/projectTable" component={projectTable} />
                 <Route exact path="/editClient" component={editClient} />

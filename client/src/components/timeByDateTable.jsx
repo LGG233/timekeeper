@@ -3,10 +3,7 @@ import API from "../util/API";
 import "./table.css";
 import moment from 'moment';
 
-// Pseudocode
-// 3) button attached to row for editing that calls up modal 
-
-class projectTimeTable extends Component {
+class timeByDateTable extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -21,8 +18,7 @@ class projectTimeTable extends Component {
     };
 
     componentDidMount() {
-        let id = localStorage.getItem("project_id");
-        API.getProjectTime(id).then(res => {
+        API.getAllTime().then(res => {
             this.setState({
                 data: res.data
             });
@@ -43,11 +39,11 @@ class projectTimeTable extends Component {
         }
     };
 
-    addNewProject = (id, name) => {
-        localStorage.setItem("client_id", id);
-        localStorage.setItem("client_name", name);
-        window.location.replace("/Project");
-    };
+    // addNewProject = (id, name) => {
+    //     localStorage.setItem("client_id", id);
+    //     localStorage.setItem("client_name", name);
+    //     window.location.replace("/Project");
+    // };
 
     enterTimeClick = (id, name, project) => {
         localStorage.setItem(this.state.data.ProjectId, id);
@@ -64,12 +60,14 @@ class projectTimeTable extends Component {
     render() {
         return (
             <div>
-                <h4>Time entries for {localStorage.getItem("client_name")} on {localStorage.getItem("project_name")} project</h4>
-                <button className="btn btn-sm btn-secondary card-btn" onClick={() => this.enterTimeClick(localStorage.getItem("id"), localStorage.getItem("name"), localStorage.getItem("project"))}>Enter Time on this Project</button>
+                <h4>Time Entries by Date</h4>
+                <button className="btn btn-sm btn-secondary card-btn" onClick={() => window.location.replace("/viewAllProjects")}>Enter Time</button>
                 <table className="table">
                     <thead>
                         <tr>
                             <th scope="col">Date</th>
+                            <th scope="col">Client</th>
+                            <th scope="col">Project</th>
                             <th scope="col">Hours</th>
                             <th scope="col">Work Performed</th>
                             {/* <th scope="col">Billed?</th> */}
@@ -79,13 +77,15 @@ class projectTimeTable extends Component {
                     <tbody>
                         {this.state.data.map(time => (
                             <tr>
-                                <th scope="row">{moment.utc(time.date_of_service).format("ll")}</th>
+                                <th scope="row">{moment.utc(time.date_of_service).format("l")}</th>
+                                <td>{time.client_name}</td>
+                                <td>{time.project_name}</td>
                                 <td>{time.hours}</td>
                                 <td>{time.desc_of_work}</td>
                                 {/* <td></td> */}
                                 <td>
-                                    <button className="btn btn-sm btn-secondary card-btn" onClick={() => this.editTime(time.id)}>Edit Entry</button>
-                                    <button className="btn btn-sm btn-secondary card-btn" onClick={() => this.handleDeleteClick(time.id)}>Delete Entry</button>
+                                    <button className="btn btn-sm btn-secondary card-btn" onClick={() => this.editTime(time.id)}>Edit</button>
+                                    <button className="btn btn-sm btn-secondary card-btn" onClick={() => this.handleDeleteClick(time.id)}>Delete</button>
                                     {/* <button className="btn btn-sm btn-secondary card-btn" onClick={() => this.enterTimeClick(time.ProjectId, time.client_name, time.project_name)}>Enter Time on this Project</button> */}
                                 </td>
                             </tr>
@@ -97,4 +97,4 @@ class projectTimeTable extends Component {
     }
 }
 
-export default projectTimeTable;
+export default timeByDateTable;

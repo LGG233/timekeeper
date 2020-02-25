@@ -96,21 +96,23 @@ class projectTable extends Component {
                     </thead>
                     <tbody>
                         {this.state.data.map(project => (
-                            <tr>
-                                <th scope="row">{project.project_name}</th>
-                                <td>
-                                    <button className="btn btn-sm btn-secondary card-btn" onClick={() => this.viewProjectDetail(project.id)}>Detail</button>
-                                    <button className="btn btn-sm btn-secondary card-btn" onClick={() => this.editProject(project.id)}>Edit</button>
-                                    <button className="btn btn-sm btn-secondary card-btn" onClick={() => this.handleProjectDelete(project.id)}>Delete</button>
-                                    <button className="btn btn-sm btn-secondary card-btn" onClick={() => this.enterTimeClick(project.id, project.client_name, project.project_name)}>Enter Time</button>
-                                    <button className="btn btn-sm btn-secondary card-btn" onClick={() => this.viewProjectTime(project.id, project.client_name, project.project_name)}>View Time</button>
-                                </td>
-                            </tr>
+                            <div key={project.id}>
+                                <tr>
+                                    <th scope="row">{project.project_name}</th>
+                                    <td>
+                                        <button className="btn btn-sm btn-secondary card-btn" onClick={() => this.viewProjectDetail(project.id)}>Detail</button>
+                                        <button className="btn btn-sm btn-secondary card-btn" onClick={() => this.editProject(project.id)}>Edit</button>
+                                        <button className="btn btn-sm btn-secondary card-btn" onClick={() => this.handleProjectDelete(project.id)}>Delete</button>
+                                        <button className="btn btn-sm btn-secondary card-btn" onClick={() => this.enterTimeClick(project.id, project.client_name, project.project_name)}>Enter Time</button>
+                                        <button className="btn btn-sm btn-secondary card-btn" onClick={() => this.viewProjectTime(project.id, project.client_name, project.project_name)}>View Time</button>
+                                    </td>
+                                </tr>
+                            </div>
                         ))}
                     </tbody>
-                </table>
+                </table >
 
-            </div>
+            </div >
         );
     }
 }

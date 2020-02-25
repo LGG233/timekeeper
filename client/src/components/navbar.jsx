@@ -30,6 +30,13 @@ const NavBar = props => {
                 >
                     Projects{" "}
                 </button>
+                <button className="btn btn-sm displayData"
+                    onClick={function () {
+                        window.location.replace("/timeByDateTable");
+                    }}
+                >
+                    Time by Date{" "}
+                </button>
             </div >
         </nav>);
 }

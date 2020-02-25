@@ -82,21 +82,23 @@ class timeTable extends Component {
                     </thead>
                     <tbody>
                         {this.state.data.map(time => (
-                            <tr>
-                                <th scope="row">{time.project_name}</th>
-                                <td>{moment.utc(time.date_of_service).format("ll")}</td>
-                                <td>{time.hours}</td>
-                                <td>{time.desc_of_work}</td>
-                                {/* <td></td> */}
-                                <td>
-                                    <button className="btn btn-sm btn-secondary card-btn" onClick={() => this.editTime(time.id, time.project_name, time.ProjectId)}>Edit Entry</button>
-                                    <button className="btn btn-sm btn-secondary card-btn" onClick={() => this.handleDeleteClick(time.id)}>Delete</button>
-                                </td>
-                            </tr>
+                            <div key={time.id}>
+                                <tr>
+                                    <th scope="row">{time.project_name}</th>
+                                    <td>{moment.utc(time.date_of_service).format("ll")}</td>
+                                    <td>{time.hours}</td>
+                                    <td>{time.desc_of_work}</td>
+                                    {/* <td></td> */}
+                                    <td>
+                                        <button className="btn btn-sm btn-secondary card-btn" onClick={() => this.editTime(time.id, time.project_name, time.ProjectId)}>Edit Entry</button>
+                                        <button className="btn btn-sm btn-secondary card-btn" onClick={() => this.handleDeleteClick(time.id)}>Delete</button>
+                                    </td>
+                                </tr>
+                            </div>
                         ))}
                     </tbody>
                 </table>
-            </div>
+            </div >
         );
     }
 }

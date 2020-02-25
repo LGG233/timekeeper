@@ -49,7 +49,7 @@ class editEntry extends Component {
 
     addTimeEntry = (data, response) => {
         API.addTimeEntry(data, response)
-            .then(data => console.log(data))
+            // .then(data => console.log(data))
             .then(window.location.replace("/projectTimeTable"))
             .catch(err => console.log(err))
     };
