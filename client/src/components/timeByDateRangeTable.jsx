@@ -13,12 +13,23 @@ class timeByDateTable extends Component {
       date_of_service: "",
       hours: "",
       desc_of_work: "",
+      startDate: "",
+      dateRange: "",
+      dateData: [],
       data: [],
     };
   }
 
   componentDidMount() {
-    API.getAllTime().then((res) => {
+    let startDate = localStorage.getItem("start_date");
+    let dateRange = localStorage.getItem("date_range");
+    let dateData = {
+      startDate,
+      dateRange,
+    };
+    console.log("componentDidMount loaded");
+    console.log("Data sent back end", dateData);
+    API.getAllTime(dateData).then((res) => {
       this.setState({
         data: res.data,
       });

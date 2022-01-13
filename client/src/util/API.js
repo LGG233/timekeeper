@@ -1,81 +1,85 @@
 import axios from "axios";
 
 export default {
-    //get routes 
-    getAllClients: function () {
-        return axios.get("/clients")
-    },
+  //get routes
+  getAllClients: function () {
+    return axios.get("/clients");
+  },
 
-    getOneClient: function (id) {
-        return axios.get(`/client/${id}`)
-    },
+  getOneClient: function (id) {
+    return axios.get(`/client/${id}`);
+  },
 
-    getClientProjects: function (id) {
-        return axios.get(`/clientprojects/${id}`)
-    },
+  getClientProjects: function (id) {
+    return axios.get(`/clientprojects/${id}`);
+  },
 
-    getAllProjects: function () {
-        return axios.get("/projects")
-    },
+  getAllProjects: function () {
+    return axios.get("/projects");
+  },
 
-    getOneProject: function (id) {
-        return axios.get(`/project/${id}`)
-    },
+  getOneProject: function (id) {
+    return axios.get(`/project/${id}`);
+  },
 
-    getAllTime: function () {
-        return axios.get("/time")
-    },
+  getAllTime: function () {
+    return axios.get("/time");
+  },
 
-    getTimeEntry: function (id) {
-        return axios.get(`/time/${id}`)
-    },
+  getTimeEntry: function (id) {
+    return axios.get(`/time/${id}`);
+  },
 
-    getClientTime: function (id) {
-        return axios.get(`/clienttime/${id}`)
-    },
+  getTimeRange: function (dataRange) {
+    return axios.get(`/time/range`);
+  },
 
-    getProjectTime: function (id) {
-        return axios.get(`/projectTime/${id}`)
-    },
+  getClientTime: function (id) {
+    return axios.get(`/clienttime/${id}`);
+  },
 
-    // post routes 
-    addNewClient: function (data) {
-        console.log(data.entryClientContact);
-        return axios.post("/newClient", data)
-    },
+  getProjectTime: function (id) {
+    return axios.get(`/projectTime/${id}`);
+  },
 
-    addNewProject: function (data) {
-        return axios.post("/newProject", data)
-    },
+  // post routes
+  addNewClient: function (data) {
+    console.log(data.entryClientContact);
+    return axios.post("/newClient", data);
+  },
 
-    addTimeEntry: function (data) {
-        return axios.post("/newtimeentry", data)
-    },
+  addNewProject: function (data) {
+    return axios.post("/newProject", data);
+  },
 
-    // delete routes
-    deleteTimeEntry: function (id) {
-        console.log(id);
-        return axios.delete(`/time/${id}`)
-    },
+  addTimeEntry: function (data) {
+    return axios.post("/newtimeentry", data);
+  },
 
-    deleteClient: function (id) {
-        return axios.delete(`/clients/${id}`)
-    },
+  // delete routes
+  deleteTimeEntry: function (id) {
+    console.log(id);
+    return axios.delete(`/time/${id}`);
+  },
 
-    deleteProject: function (id) {
-        return axios.delete(`/project/${id}`)
-    },
+  deleteClient: function (id) {
+    return axios.delete(`/clients/${id}`);
+  },
 
-    // put routes
-    editClient: function (id, data) {
-        return axios.put(`/client/${id}`, data)
-    },
+  deleteProject: function (id) {
+    return axios.delete(`/project/${id}`);
+  },
 
-    editProject: function (id, data) {
-        return axios.put(`/project/${id}`, data)
-    },
+  // put routes
+  editClient: function (id, data) {
+    return axios.put(`/client/${id}`, data);
+  },
 
-    editEntry: function (id, data) {
-        return axios.put(`/time/${id}`, data)
-    }
-}
+  editProject: function (id, data) {
+    return axios.put(`/project/${id}`, data);
+  },
+
+  editEntry: function (id, data) {
+    return axios.put(`/time/${id}`, data);
+  },
+};
